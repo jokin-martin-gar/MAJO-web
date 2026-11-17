@@ -4,15 +4,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { EASE, cn } from "@/lib/utils";
 
+// What a website can do for each sector. Generic on purpose: these are examples, not client activity.
 const NOTIFICATIONS = [
-  { mark: "O", bg: "from-[#c2410c] to-[#7c2d12]", title: "Nueva reserva", body: "Olmo · Mesa para 4 · Hoy 21:30" },
-  { mark: "A", bg: "from-[#38bdf8] to-[#1e40af]", title: "Cita confirmada", body: "Arlanza · Implante · Jue 10:15" },
-  { mark: "V", bg: "from-[#a8a29e] to-[#292524]", title: "Consulta entrante", body: "Vidal & Ros · Mercantil" },
-  { mark: "F", bg: "from-[#d4ff5c] to-[#4d7c0f]", title: "Nuevo socio", body: "Forma · Plan anual · Pagado" },
-  { mark: "N", bg: "from-[#f9a8d4] to-[#9d174d]", title: "Pedido #4821", body: "Nácar · 3 artículos · 186,00 €" },
+  { mark: "R", bg: "from-[#c2410c] to-[#7c2d12]", title: "Reserva online", body: "Restaurante · Mesa para 4 · 21:30" },
+  { mark: "C", bg: "from-[#38bdf8] to-[#1e40af]", title: "Cita confirmada", body: "Clínica · Revisión · Jue 10:15" },
+  { mark: "D", bg: "from-[#a8a29e] to-[#292524]", title: "Consulta entrante", body: "Despacho · Derecho mercantil" },
+  { mark: "G", bg: "from-[#d4ff5c] to-[#4d7c0f]", title: "Alta de socio", body: "Gimnasio · Plan anual" },
+  { mark: "T", bg: "from-[#f9a8d4] to-[#9d174d]", title: "Pedido online", body: "Tienda · 3 artículos" },
 ];
 
-/** Live-feeling notification that cycles through what a great website brings in. */
+/** Notification that cycles through what a great website can bring in — labelled as an example. */
 export function NotificationCard({ className }: { className?: string }) {
   const [i, setI] = useState(0);
 
@@ -45,7 +46,7 @@ export function NotificationCard({ className }: { className?: string }) {
           <div className="min-w-0 flex-1">
             <div className="flex items-center justify-between gap-2">
               <p className="truncate text-[13px] font-medium">{n.title}</p>
-              <span className="font-mono text-[10px] text-muted">ahora</span>
+              <span className="font-mono text-[10px] text-muted">ejemplo</span>
             </div>
             <p className="truncate text-[12px] text-muted">{n.body}</p>
           </div>
@@ -78,14 +79,14 @@ export function ScoreRing({ className }: { className?: string }) {
         />
       </svg>
       <div>
-        <p className="text-2xl font-semibold leading-none tracking-tight text-cyan">100</p>
-        <p className="mt-1 text-[11px] text-muted">Rendimiento</p>
+        <p className="text-2xl font-semibold leading-none tracking-tight text-cyan">90+</p>
+        <p className="mt-1 text-[11px] text-muted">Rendimiento objetivo</p>
       </div>
     </div>
   );
 }
 
-/** A Google result where the client is, finally, first. */
+/** A search result where *your* business shows up first — the goal, not a claim about a client. */
 export function SearchCard({ className }: { className?: string }) {
   return (
     <div className={cn("glass w-[300px] rounded-2xl p-4 shadow-2xl", className)}>
@@ -94,14 +95,14 @@ export function SearchCard({ className }: { className?: string }) {
           <circle cx="7" cy="7" r="4.5" />
           <path d="m10.5 10.5 3 3" strokeLinecap="round" />
         </svg>
-        dentista en bilbao
+        dentista cerca de mí
       </div>
       <div className="flex items-start gap-2.5">
         <span className="mt-0.5 rounded-md bg-lime/15 px-1.5 py-0.5 font-mono text-[10px] font-medium text-lime">#1</span>
         <div className="min-w-0">
-          <p className="truncate text-[11px] text-muted">clinicaarlanza.es</p>
-          <p className="truncate text-[13px] font-medium text-[#a8b4ff]">Clínica Arlanza · Implantes sin espera</p>
-          <p className="mt-0.5 text-[11px] text-amber-300/90">★★★★★ <span className="text-muted">4,9 · 612 reseñas</span></p>
+          <p className="truncate text-[11px] text-muted">tunegocio.es</p>
+          <p className="truncate text-[13px] font-medium text-[#a8b4ff]">Tu negocio · lo primero que ven</p>
+          <p className="mt-0.5 text-[11px] text-muted">El objetivo: que te encuentren antes que a la competencia.</p>
         </div>
       </div>
     </div>
@@ -118,7 +119,7 @@ export function SpeedChip({ className }: { className?: string }) {
         </svg>
       </span>
       <span className="text-[12px]">
-        Carga en <span className="font-mono text-fg">0,6 s</span>
+        Objetivo de carga <span className="font-mono text-fg">&lt; 1 s</span>
       </span>
     </div>
   );

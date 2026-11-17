@@ -57,7 +57,10 @@ function toPath(values: number[], offsetX = 0) {
     .join(" ");
 }
 
-/** The hero's centrepiece: a product-grade analytics console telling the growth story. */
+/**
+ * The hero's centrepiece: an analytics console showing what we measure for every project.
+ * All figures are simulated and labelled as such — they are not results of real clients.
+ */
 export function GrowthConsole() {
   const [tab, setTab] = useState<Tab>("Resumen");
   const view = VIEWS[tab];
@@ -73,7 +76,10 @@ export function GrowthConsole() {
             <span className="absolute inset-0 animate-ping rounded-full bg-cyan/60" />
             <span className="relative size-2 rounded-full bg-cyan" />
           </span>
-          <span className="truncate text-[13px] font-medium">Crecimiento en directo</span>
+          <span className="truncate text-[13px] font-medium">Panel de resultados</span>
+          <span className="hidden shrink-0 rounded-full border border-line px-2 py-0.5 font-mono text-[10px] text-muted sm:inline">
+            Ejemplo
+          </span>
         </div>
         <div role="tablist" aria-label="Vista del panel" className="flex gap-0.5 rounded-lg bg-white/[0.04] p-0.5">
           {TABS.map((t) => (
@@ -131,14 +137,15 @@ export function GrowthConsole() {
             <span className="h-px w-4 border-t border-dashed border-white/40" /> Web anterior
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="h-0.5 w-4 rounded bg-gradient-to-r from-violet to-cyan" /> Con MAJO
+            <span className="h-0.5 w-4 rounded bg-gradient-to-r from-violet to-cyan" /> Web nueva
           </span>
+          <span className="ml-auto">Datos simulados · así medimos cada proyecto</span>
         </div>
         <svg
           viewBox={`0 0 ${W} ${H + 8}`}
           className="h-auto w-full overflow-visible"
           role="img"
-          aria-label={`Gráfico de ${view.caption.toLowerCase()}: crecimiento sostenido tras el lanzamiento de la nueva web`}
+          aria-label={`Gráfico de ejemplo con datos simulados de ${view.caption.toLowerCase()} antes y después de lanzar una web nueva`}
         >
           <defs>
             <linearGradient id="gc-line" x1="0" x2="1">

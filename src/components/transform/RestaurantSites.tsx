@@ -86,7 +86,7 @@ export function NewRestaurantSite() {
           </p>
           <div className="mt-6 flex items-center gap-3 text-[11px]">
             <span className="rounded-full border border-[#efe6d8]/25 px-3 py-1.5">Menú degustación · 68 €</span>
-            <span className="text-[#efe6d8]/50">★ 4,9 · Guía Repsol</span>
+            <span className="text-[#efe6d8]/50">Brasa · Bodega propia</span>
           </div>
         </div>
 

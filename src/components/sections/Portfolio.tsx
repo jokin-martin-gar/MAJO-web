@@ -20,80 +20,55 @@ const PROJECTS = [
     id: "koji",
     name: "Kōji",
     sector: "Restaurante",
-    url: "kojibilbao.com",
+    url: "demo.majo.studio/koji",
     color: "#b91c1c",
     tone: "light" as const,
     Demo: RestaurantDemo,
     summary: "Reservas sin llamadas y una carta que abre el apetito.",
-    metrics: [
-      { v: "+221%", l: "Reservas online" },
-      { v: "−71%", l: "No-shows" },
-      { v: "41 €", l: "Ticket medio" },
-    ],
     stack: ["Reservas 24/7", "Carta dinámica", "SEO local"],
   },
   {
     id: "arlanza",
     name: "Arlanza",
     sector: "Clínica dental",
-    url: "clinicaarlanza.es",
+    url: "demo.majo.studio/arlanza",
     color: "#0ea5e9",
     tone: "light" as const,
     Demo: DentalDemo,
     summary: "Confianza médica desde el primer segundo, cita en tres toques.",
-    metrics: [
-      { v: "+184%", l: "Citas online" },
-      { v: "4,9★", l: "Valoración" },
-      { v: "−38%", l: "Coste/paciente" },
-    ],
     stack: ["Agenda integrada", "Recordatorios WhatsApp", "Precios claros"],
   },
   {
     id: "forma",
     name: "Forma",
     sector: "Gimnasio",
-    url: "formastudio.es",
+    url: "demo.majo.studio/forma",
     color: "#d4ff5c",
     tone: "dark" as const,
     Demo: GymDemo,
     summary: "Energía de marca deportiva y reservas de clase en tiempo real.",
-    metrics: [
-      { v: "+212", l: "Socios/90 días" },
-      { v: "94%", l: "Ocupación" },
-      { v: "71%", l: "Altas móvil" },
-    ],
     stack: ["Horarios en vivo", "Pagos recurrentes", "Área de socios"],
   },
   {
     id: "vidal",
     name: "Vidal & Ros",
     sector: "Abogados",
-    url: "vidalros.law",
+    url: "demo.majo.studio/vidal-ros",
     color: "#a8a29e",
     tone: "light" as const,
     Demo: LawDemo,
     summary: "Autoridad editorial y captación de consultas cualificadas.",
-    metrics: [
-      { v: "×3,4", l: "Consultas" },
-      { v: "Top 3", l: "42 búsquedas" },
-      { v: "3:12", l: "Min en web" },
-    ],
     stack: ["Posicionamiento", "Formulario inteligente", "Blog jurídico"],
   },
   {
     id: "nacar",
     name: "Nácar",
     sector: "Ecommerce",
-    url: "nacar.shop",
+    url: "demo.majo.studio/nacar",
     color: "#d6b4a8",
     tone: "light" as const,
     Demo: ShopDemo,
     summary: "Cerámica artesanal que se siente de lujo y se compra en segundos.",
-    metrics: [
-      { v: "3,8%", l: "Conversión" },
-      { v: "+62%", l: "Valor carrito" },
-      { v: "0,7 s", l: "Carga" },
-    ],
     stack: ["Checkout 1 paso", "Variantes visuales", "Stripe"],
   },
 ];
@@ -125,11 +100,11 @@ export function Portfolio() {
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionIntro
             id="portfolio-title"
-            index="05"
-            eyebrow="Portfolio interactivo"
-            title="No te lo enseñamos. Pruébalo."
+            index="04"
+            eyebrow="Proyectos conceptuales"
+            title="No te lo contamos. Pruébalo."
             accent={["Pruébalo."]}
-            lead="Cinco negocios, cinco experiencias. Navega, reserva, compra. Todo lo que ves funciona."
+            lead="Cinco negocios ficticios, cinco webs reales. Navega, reserva, compra: todo lo que ves funciona, y es lo que podemos construir para ti."
           />
           <div role="radiogroup" aria-label="Vista previa" className="flex shrink-0 gap-1 self-start rounded-full border border-line p-1 lg:self-auto">
             {(["desktop", "mobile"] as const).map((d) => (
@@ -206,13 +181,6 @@ export function Portfolio() {
                   transition={{ duration: 0.4, ease: EASE }}
                 >
                   <p className="text-sm leading-relaxed text-muted">{project.summary}</p>
-                  <ul className="mt-4 flex flex-wrap gap-1.5">
-                    {project.stack.map((s) => (
-                      <li key={s} className="rounded-full border border-line px-2.5 py-1 text-[11px] text-muted">
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -225,7 +193,7 @@ export function Portfolio() {
               transition={{ duration: 0.8, ease: EASE }}
               className={cn("mx-auto", device === "mobile" ? "max-w-[380px]" : "max-w-none")}
             >
-              <BrowserFrame url={project.url} tone={project.tone}>
+              <BrowserFrame url={project.url} tone={project.tone} badge="Proyecto conceptual">
                 <div className={cn("relative", device === "mobile" ? "h-[640px]" : "h-[560px] sm:h-[600px]")}>
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -243,30 +211,37 @@ export function Portfolio() {
               </BrowserFrame>
             </motion.div>
 
+            {/* What each concept solves — features, not invented results. */}
             <AnimatePresence mode="wait">
-              <motion.dl
+              <motion.ul
                 key={project.id}
-                className="mt-4 grid grid-cols-3 gap-3"
+                aria-label="Qué resuelve este proyecto"
+                className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3"
                 initial="hidden"
                 animate="show"
                 exit="hidden"
                 variants={{ show: { transition: { staggerChildren: 0.06 } } }}
               >
-                {project.metrics.map((m) => (
-                  <motion.div
-                    key={m.l}
+                {project.stack.map((s) => (
+                  <motion.li
+                    key={s}
                     variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
                     transition={{ duration: 0.5, ease: EASE }}
-                    className="rounded-2xl border border-line bg-ink-2/80 p-4 backdrop-blur"
+                    className="flex items-center gap-3 rounded-2xl border border-line bg-ink-2 p-4 text-sm font-medium"
                   >
-                    <dt className="text-[11px] text-muted">{m.l}</dt>
-                    <dd className="mt-1 text-xl font-medium tracking-tight sm:text-2xl">{m.v}</dd>
-                  </motion.div>
+                    <span className="grid size-6 shrink-0 place-items-center rounded-full bg-cyan/15 text-cyan-ink" aria-hidden>
+                      <svg viewBox="0 0 16 16" className="size-3" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="m3.5 8.5 3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    {s}
+                  </motion.li>
                 ))}
-              </motion.dl>
+              </motion.ul>
             </AnimatePresence>
-            <p className="mt-3 font-mono text-[10px] text-subtle">
-              ↳ Proyectos conceptuales creados para demostrar nuestro proceso. Interactúa con ellos libremente.
+            <p className="mt-3 text-xs text-muted">
+              Proyectos conceptuales: negocios ficticios que hemos diseñado y programado para enseñarte cómo
+              trabajamos. Todo lo que ves funciona; interactúa con ellos libremente.
             </p>
           </div>
         </div>

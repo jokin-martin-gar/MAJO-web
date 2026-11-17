@@ -122,18 +122,23 @@ function TypeCell() {
 
 /* ── Performance: Core Web Vitals ─────────────────────────────────────── */
 function PerformanceCell() {
+  // Google's "good" thresholds for Core Web Vitals: what every project must pass before launch.
   const vitals = [
-    { k: "LCP", v: "0,6 s" },
-    { k: "INP", v: "38 ms" },
-    { k: "CLS", v: "0,00" },
+    { k: "LCP", v: "< 2,5 s" },
+    { k: "INP", v: "< 200 ms" },
+    { k: "CLS", v: "< 0,1" },
   ];
   return (
     <SpotlightCard glow="rgba(94,230,208,0.16)" className="flex h-full flex-col justify-between p-7">
-      <CellLabel title="Rápida de verdad" body="Cada segundo de carga cuesta clientes. Las nuestras cargan antes de que parpadees." />
+      <CellLabel
+        title="Rápida de verdad"
+        body="Cada segundo de carga cuesta clientes. No entregamos una web hasta que pasa las métricas de Google en verde."
+      />
       <div className="mt-8">
         <p className="text-6xl font-medium tracking-[-0.05em] text-cyan">
-          <Counter to={0.6} decimals={1} suffix=" s" duration={1.6} />
+          <Counter to={90} suffix="+" duration={1.6} />
         </p>
+        <p className="mt-1 font-mono text-[11px] text-muted">Lighthouse, objetivo mínimo</p>
         <div className="mt-5 flex gap-2">
           {vitals.map((v) => (
             <div key={v.k} className="flex-1 rounded-xl border border-line bg-white/[0.02] px-3 py-2">

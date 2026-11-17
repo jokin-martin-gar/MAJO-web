@@ -20,7 +20,7 @@ export function Objections() {
             eyebrow="Sin letra pequeña"
             title="Lo que probablemente estás pensando ahora mismo."
             accent={["pensando"]}
-            lead="Son las mismas dudas que tenían todos nuestros clientes antes de empezar. Estas son las respuestas honestas."
+            lead="Son las dudas más habituales antes de encargar una web. Estas son nuestras respuestas, sin rodeos."
           />
         </div>
 

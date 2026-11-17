@@ -24,7 +24,7 @@ export function FinalCTA() {
           <Reveal blur={false} y={12}>
             <p className="mb-8 inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
               <span className="size-1.5 animate-pulse-soft rounded-full bg-lime" />
-              {site.availability.remaining} plazas disponibles este trimestre
+              Agenda abierta · condiciones de lanzamiento
             </p>
           </Reveal>
           <h2 id="cta-title" className="text-balance text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.055em]">
@@ -32,7 +32,8 @@ export function FinalCTA() {
           </h2>
           <Reveal delay={0.3}>
             <p className="mx-auto mt-8 max-w-lg text-lg text-muted">
-              Cuéntanos sobre tu negocio. Te respondemos en menos de 24 horas con una primera idea, sin compromiso.
+              Cuéntanos sobre tu negocio. Te respondemos en menos de 24 horas laborables con una primera idea, sin
+              compromiso.
             </p>
           </Reveal>
         </div>

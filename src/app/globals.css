@@ -23,6 +23,8 @@
   --color-cyan: #5ee6d0;
   --color-ember: #ff8a4c;
   --color-lime: #d4ff5c;
+  --color-violet-ink: #5b4bd6;
+  --color-cyan-ink: #0b7a6c;
 
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-snappy: cubic-bezier(0.65, 0, 0.35, 1);

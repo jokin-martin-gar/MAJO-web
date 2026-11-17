@@ -1,53 +1,61 @@
 /**
- * Editorial content for social proof and objections.
+ * Editorial content: commitments, founding-client offer and objections.
  *
- * IMPORTANT: testimonials and case studies ship as illustrative examples. Replace them with
- * real clients (with their permission) and then set DEMO_CONTENT to false — that removes the
- * "illustrative" notes shown on the page.
+ * Honesty rule: nothing here may suggest clients, results or reviews we don't have yet.
+ * Anything only the studio can confirm is marked with [COMPLETAR] (see MEJORAS.md).
  */
-export const DEMO_CONTENT = true;
 
-export const TESTIMONIALS = [
-  { q: "Nos pidieron cita tres pacientes nuevos la primera semana. Tres. Llevábamos meses sin uno solo desde internet.", a: "Leire Etxeberria", r: "Clínica Arlanza" },
-  { q: "Subimos precios un 30% después del lanzamiento y aun así tenemos lista de espera. La web justifica lo que cobramos.", a: "Marc Soler", r: "Forma Studio" },
-  { q: "Por fin tenemos una web que proyecta lo que somos. Los clientes llegan ya convencidos.", a: "Elena Vidal", r: "Vidal & Ros" },
-  { q: "Dejamos de coger el teléfono para reservas. El equipo de sala nos lo agradece cada noche.", a: "Aitor Ugarte", r: "Kōji" },
-  { q: "Vendemos más online que en la tienda física. Hace un año era impensable.", a: "Carmen Ruiz", r: "Nácar Cerámica" },
-  { q: "Cuidan cada detalle como si fuera su propio negocio. Nunca había trabajado así con una agencia.", a: "Javier Montes", r: "Fisio Montes" },
-  { q: "Seis semanas exactas, como prometieron. Ni un día más, ni un euro más.", a: "Lucía Ferrer", r: "Estudio Ferrer Arquitectos" },
-  { q: "Nuestros clientes nos preguntan quién nos ha hecho la web. Eso lo dice todo.", a: "Pablo Iriarte", r: "Iriarte Inmobiliaria" },
+/** Promises the studio makes to every client — all verifiable from day one. */
+export const COMMITMENTS = [
+  { v: "< 24 h", l: "Respuesta a tu solicitud, en días laborables" },
+  { v: "Cerrado", l: "Presupuesto fijo antes de empezar. Sin sorpresas" },
+  { v: "Prototipo", l: "Ves y pruebas el diseño antes de programar nada" },
+  { v: "Tuya", l: "Dominio, código y contenidos a tu nombre" },
 ];
 
-export const COMMITMENTS = [
-  { v: "< 24 h", l: "Respuesta a tu solicitud" },
-  { v: "6", l: "Semanas de media hasta lanzar" },
-  { v: "100", l: "Objetivo de rendimiento Lighthouse" },
-  { v: "0 €", l: "Sorpresas: presupuesto cerrado" },
+/** What makes the studio different, said plainly. */
+export const VALUES = [
+  {
+    t: "Hablas con quien hace tu web",
+    d: "Sin comerciales ni intermediarios. Las personas que diseñan y programan tu web son las mismas que te atienden.",
+  },
+  {
+    t: "Hecha a medida, sin plantillas",
+    d: "Cada web parte de tu negocio y de tus clientes, no de un tema comprado. Por eso se ve y se siente distinta.",
+  },
+  {
+    t: "Claridad antes que promesas",
+    d: "No te prometemos cifras que no podemos garantizar. Te enseñamos el plan, el presupuesto cerrado y lo que vamos a medir.",
+  },
 ];
 
 export const OBJECTIONS = [
   {
+    q: "Sois un estudio nuevo. ¿Por qué debería confiar en vosotros?",
+    a: "Es una pregunta justa. No tenemos años de casos que enseñarte, así que te ofrecemos otra cosa: proyectos de ejemplo que puedes probar en esta misma página, un prototipo navegable antes de pagar el desarrollo y un presupuesto cerrado por escrito. Si en el prototipo no ves lo que esperabas, lo hablamos antes de seguir.",
+  },
+  {
     q: "¿No será demasiado caro para un negocio como el mío?",
-    a: "Lo caro es una web que no trae clientes. Trabajamos con presupuesto cerrado desde el primer día, adaptado al tamaño de tu negocio, y lo planteamos como inversión: medimos cuántas solicitudes genera para que veas el retorno con números, no con promesas.",
+    a: "Lo caro es una web que no trae clientes. Trabajamos con presupuesto cerrado desde el primer día, adaptado al tamaño de tu negocio, y te explicamos qué vamos a medir (visitas, solicitudes, reservas) para que puedas valorar el retorno con datos.",
   },
   {
     q: "No tengo tiempo para involucrarme en un proyecto así.",
-    a: "No lo necesitas. Tres reuniones de 45 minutos en todo el proyecto y un enlace privado para ver los avances cuando quieras. Nosotros nos encargamos de textos, estructura, diseño, desarrollo y publicación.",
+    a: "No lo necesitas. Unas pocas reuniones cortas a lo largo del proyecto y un enlace privado para ver los avances cuando quieras. Nosotros nos encargamos de la estructura, el diseño, el desarrollo y la publicación.",
   },
   {
     q: "Ya tengo una web. ¿Para qué quiero otra?",
-    a: "Si tu web actual te trae clientes de forma constante, probablemente no la necesitas. Si la tienes “por tener”, está trabajando en tu contra: tus clientes potenciales te comparan con la competencia cada día, y la primera impresión se decide en segundos.",
+    a: "Si tu web actual te trae clientes de forma constante, probablemente no la necesitas. Si la tienes “por tener”, puede estar trabajando en tu contra: tus clientes potenciales te comparan con la competencia y la primera impresión se decide en segundos.",
   },
   {
     q: "¿Y si el diseño no me convence?",
-    a: "Antes de desarrollar nada ves un prototipo navegable y lo ajustamos contigo. Las rondas de revisión están incluidas en el presupuesto: no avanzamos hasta que estés orgulloso de enseñarlo.",
+    a: "Antes de desarrollar nada ves un prototipo navegable y lo ajustamos contigo. Las rondas de revisión están incluidas en el presupuesto: no avanzamos hasta que estés a gusto con el resultado.",
   },
   {
     q: "¿Podré actualizar contenidos yo mismo?",
-    a: "Sí. Te entregamos un panel sencillo para cambiar textos, fotos, horarios, precios o la carta en minutos, sin tocar código. Y te formamos para usarlo.",
+    a: "Sí. Preparamos la web para que puedas cambiar textos, fotos, horarios o precios sin tocar código, y te enseñamos a hacerlo.",
   },
   {
     q: "¿Qué pasa después del lanzamiento?",
-    a: "Seguimos a tu lado. Mantenimiento, seguridad, copias de seguridad y un informe mensual con lo que está funcionando y lo que vamos a mejorar. Tu web no se queda congelada el día que se publica.",
+    a: "Seguimos a tu lado: mantenimiento, seguridad, copias de seguridad y una revisión periódica de lo que funciona y lo que se puede mejorar. Tu web no se queda congelada el día que se publica.",
   },
 ];

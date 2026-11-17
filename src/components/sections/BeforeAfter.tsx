@@ -7,11 +7,13 @@ import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { NewRestaurantSite, OldRestaurantSite } from "@/components/transform/RestaurantSites";
 import { EASE, cn } from "@/lib/utils";
 
-const METRICS = [
-  { label: "Tiempo de carga", before: "7,4 s", after: "0,6 s" },
-  { label: "Reservas online / mes", before: "0", after: "312" },
-  { label: "Posición en Google", before: "#27", after: "#2" },
-  { label: "Ticket medio", before: "24 €", after: "41 €" },
+// What changes between the two versions. Qualitative on purpose: this is a concept project,
+// so there are no real before/after figures to show.
+const CHANGES = [
+  { label: "Reservas", before: "Solo por teléfono", after: "Online, 24/7" },
+  { label: "Carta", before: "PDF de 8,4 MB", after: "Web, legible en móvil" },
+  { label: "Primera impresión", before: "Anticuada", after: "A la altura de la cocina" },
+  { label: "Velocidad", before: "Lenta", after: "Objetivo < 1 s" },
 ];
 
 export function BeforeAfter() {
@@ -71,8 +73,9 @@ export function BeforeAfter() {
             eyebrow="Transformación"
             title="Mismo restaurante. Misma cocina. Otro negocio."
             accent={["Otro", "negocio."]}
-            lead="Arrastra y compara. La comida no cambió. Lo que cambió es cómo la percibe quien aún no ha entrado por la puerta."
+            lead="Arrastra y compara. La comida es la misma. Lo que cambia es cómo la percibe quien aún no ha entrado por la puerta."
           />
+          <p className="sr-only">Proyecto conceptual: Casa Olmo es un restaurante ficticio creado para esta demostración.</p>
           <div className="flex shrink-0 gap-2 font-mono text-[11px]">
             <button
               type="button"
@@ -98,7 +101,7 @@ export function BeforeAfter() {
           transition={{ duration: 1.2, ease: EASE }}
           className="mt-14"
         >
-          <BrowserFrame url="casaolmo.es">
+          <BrowserFrame url="demo.majo.studio/olmo" badge="Proyecto conceptual">
             <div
               ref={containerRef}
               onPointerDown={onPointerDown}
@@ -148,8 +151,8 @@ export function BeforeAfter() {
           </BrowserFrame>
         </motion.div>
 
-        <dl className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {METRICS.map((m, i) => (
+        <dl className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {CHANGES.map((m, i) => (
             <motion.div
               key={m.label}
               initial={{ opacity: 0, y: 20 }}
@@ -159,9 +162,9 @@ export function BeforeAfter() {
               className="rounded-2xl border border-line bg-ink-2 p-5"
             >
               <dt className="text-xs text-muted">{m.label}</dt>
-              <dd className="mt-3 flex items-baseline gap-3">
-                <span className="text-sm text-subtle line-through decoration-ember/60">{m.before}</span>
-                <span className="text-2xl font-medium tracking-tight">{m.after}</span>
+              <dd className="mt-3 space-y-1">
+                <span className="block text-sm text-subtle line-through decoration-ember/60">{m.before}</span>
+                <span className="block text-xl font-medium tracking-tight">{m.after}</span>
               </dd>
             </motion.div>
           ))}

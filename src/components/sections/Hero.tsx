@@ -15,7 +15,6 @@ import { NotificationCard, ScoreRing, SearchCard, SpeedChip } from "@/components
 import { SplitWords } from "@/components/ui/SplitWords";
 import { ArrowIcon, MagneticButton } from "@/components/ui/MagneticButton";
 import { EASE } from "@/lib/utils";
-import { site } from "@/lib/site";
 
 function useDepth(mx: MotionValue<number>, my: MotionValue<number>, depth: number) {
   const x = useTransform(mx, (v) => v * depth);
@@ -97,15 +96,15 @@ export function Hero() {
 
       <motion.div style={{ y: copyY, opacity: copyOpacity }} className="container-x relative text-center">
         <motion.a
-          href="#contacto"
+          href="#primeros-clientes"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
-          className="group mx-auto mb-10 inline-flex items-center gap-3 rounded-full glass py-1.5 pl-1.5 pr-4 text-[13px] text-muted transition-colors hover:text-fg"
+          className="group mx-auto mb-10 inline-flex max-w-full items-center gap-3 rounded-full glass py-1.5 pl-1.5 pr-4 text-left text-[13px] text-muted transition-colors hover:text-fg"
         >
-          <span className="rounded-full bg-fg px-2.5 py-0.5 text-[11px] font-medium text-ink">Nuevo</span>
-          Solo aceptamos {site.availability.projectsPerQuarter} proyectos por trimestre
-          <ArrowIcon className="size-3.5" />
+          <span className="shrink-0 rounded-full bg-fg px-2.5 py-0.5 text-[11px] font-medium text-ink">Nuevo estudio</span>
+          <span className="min-w-0">Condiciones especiales para nuestros primeros clientes</span>
+          <ArrowIcon className="size-3.5 shrink-0" />
         </motion.a>
 
         <h1
@@ -127,8 +126,8 @@ export function Hero() {
           transition={{ duration: 1, ease: EASE, delay: 1.1 }}
           className="mx-auto mt-8 max-w-xl text-pretty text-lg leading-relaxed text-muted sm:text-xl"
         >
-          Diseñamos experiencias digitales que hacen que tus clientes te elijan antes de conocerte.
-          Estrategia, diseño y tecnología al nivel de las mejores marcas del mundo.
+          Diseñamos y desarrollamos webs a medida para que tus clientes te elijan antes de conocerte.
+          Estrategia, diseño y tecnología con el cuidado de las grandes marcas.
         </motion.p>
 
         <motion.div
@@ -141,7 +140,7 @@ export function Hero() {
             Quiero ser la referencia <ArrowIcon />
           </MagneticButton>
           <MagneticButton href="#portfolio" variant="ghost">
-            Ver transformaciones
+            Ver proyectos de ejemplo
           </MagneticButton>
         </motion.div>
       </motion.div>

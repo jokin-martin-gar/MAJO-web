@@ -54,9 +54,9 @@ export function Process() {
         <SectionIntro
           id="process-title"
           tone="light"
-          index="06"
+          index="05"
           eyebrow="Proceso"
-          title="Seis semanas. Cero sorpresas. Una experiencia que disfrutarás."
+          title="Unas seis semanas. Cero sorpresas. Una experiencia que disfrutarás."
           accent={["disfrutarás."]}
           lead="Trabajar con nosotros es tan cuidado como el resultado. Sabes en todo momento qué pasa, qué viene y por qué."
         />
@@ -260,10 +260,10 @@ function LaunchVisual() {
   const bars = [18, 26, 34, 42, 58, 70, 86, 100];
   return (
     <div className="flex size-full flex-col justify-end" aria-hidden>
-      <p className="text-6xl font-medium tracking-[-0.05em]">
-        +312<span className="text-cyan">%</span>
+      <p className="text-5xl font-medium tracking-[-0.05em]">
+        Informe <span className="font-serif italic text-cyan">mensual</span>
       </p>
-      <p className="mt-2 text-sm text-muted">Solicitudes desde el lanzamiento</p>
+      <p className="mt-2 text-sm text-muted">Ejemplo: solicitudes recibidas cada mes</p>
       <div className="mt-8 flex h-40 items-end gap-2">
         {bars.map((b, i) => (
           <motion.div

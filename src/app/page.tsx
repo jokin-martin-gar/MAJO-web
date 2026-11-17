@@ -4,25 +4,25 @@ import { Hero } from "@/components/sections/Hero";
 import { Craft } from "@/components/sections/Craft";
 import { Problem } from "@/components/sections/Problem";
 import { BeforeAfter } from "@/components/sections/BeforeAfter";
-import { Cases } from "@/components/sections/Cases";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Process } from "@/components/sections/Process";
-import { Testimonials } from "@/components/sections/Testimonials";
+import { About } from "@/components/sections/About";
+import { FoundingClients } from "@/components/sections/FoundingClients";
 import { Objections } from "@/components/sections/Objections";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 /**
- * Narrative order — every chapter has a psychological job:
- *  1. Hero ........... impact: "these people are different"
- *  2. Craft .......... proof of quality before any claim
- *  3. Problem ........ make the cost of an outdated site felt
- *  4. BeforeAfter .... show the transformation, let them drive it
- *  5. Cases .......... stories with numbers
- *  6. Portfolio ...... hands-on exploration — the core
- *  7. Process ........ remove fear of the unknown
- *  8. Testimonials ... social proof
- *  9. Objections ..... answer the "yes, but…"
- * 10. FinalCTA ....... a memorable, low-friction ask
+ * Narrative order — every chapter has a job, and none of them relies on invented proof:
+ *  1. Hero ............. impact: "these people are different"
+ *  2. Craft ............ proof of quality through live micro-demos
+ *  3. Problem .......... make the cost of an outdated site felt (sourced research)
+ *  4. BeforeAfter ...... show the transformation on a concept project
+ *  5. Portfolio ........ hands-on concept projects — the core
+ *  6. Process .......... remove fear of the unknown
+ *  7. About ............ who is behind the studio
+ *  8. FoundingClients .. honest "we're starting" offer + verifiable commitments
+ *  9. Objections ....... answer the "yes, but…"
+ * 10. FinalCTA ......... a memorable, low-friction ask
  */
 export default function Home() {
   return (
@@ -33,10 +33,10 @@ export default function Home() {
         <Craft />
         <Problem />
         <BeforeAfter />
-        <Cases />
         <Portfolio />
         <Process />
-        <Testimonials />
+        <About />
+        <FoundingClients />
         <Objections />
         <FinalCTA />
       </main>
