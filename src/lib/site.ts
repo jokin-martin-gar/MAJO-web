@@ -9,9 +9,9 @@ export const site = {
   email: "hola@majo.studio",
   locale: "es_ES",
   nav: [
-    { label: "Trabajo", href: "#portfolio" },
-    { label: "Proceso", href: "#proceso" },
-    { label: "Nosotros", href: "#nosotros" },
-    { label: "Preguntas", href: "#preguntas" },
+    { label: "Trabajo", href: "/#portfolio" },
+    { label: "Proceso", href: "/#proceso" },
+    { label: "Nosotros", href: "/#nosotros" },
+    { label: "Preguntas", href: "/#preguntas" },
   ],
 } as const;

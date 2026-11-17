@@ -199,6 +199,13 @@ function ContactForm() {
                 )}
               </button>
             </div>
+            <p className="text-center text-xs leading-relaxed text-muted sm:text-left">
+              Usaremos tus datos solo para responder a tu solicitud. Más información en nuestra{" "}
+              <a href="/privacidad" className="text-fg underline underline-offset-4">
+                política de privacidad
+              </a>
+              .
+            </p>
             {status === "error" && (
               <p role="alert" className="text-center text-sm text-ember-ink">
                 {serverError}

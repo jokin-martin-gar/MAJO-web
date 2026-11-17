@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@/lib/site";
 import { Logo } from "@/components/ui/Logo";
 
@@ -19,9 +20,9 @@ export function Footer() {
               <ul className="space-y-2">
                 {site.nav.map((l) => (
                   <li key={l.href}>
-                    <a href={l.href} className="text-muted transition-colors hover:text-fg">
+                    <Link href={l.href} className="text-muted transition-colors hover:text-fg">
                       {l.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -35,18 +36,26 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="#contacto" className="text-muted transition-colors hover:text-fg">
+                  <Link href="/#contacto" className="text-muted transition-colors hover:text-fg">
                     Pedir propuesta
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
             <div>
               <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-subtle">Legal</p>
-              <ul className="space-y-2 text-muted">
-                <li>Aviso legal</li>
-                <li>Privacidad</li>
-                <li>Cookies</li>
+              <ul className="space-y-2">
+                {[
+                  { label: "Aviso legal", href: "/aviso-legal" },
+                  { label: "Privacidad", href: "/privacidad" },
+                  { label: "Cookies", href: "/cookies" },
+                ].map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="text-muted transition-colors hover:text-fg">
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

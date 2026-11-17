@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
 import { EASE, cn } from "@/lib/utils";
@@ -44,30 +45,30 @@ export function Navbar() {
             scrolled ? "glass shadow-[0_10px_40px_-14px_rgba(30,25,60,0.25)]" : "border border-transparent",
           )}
         >
-          <a href="#top" aria-label={`${site.name}, volver al inicio`}>
+          <Link href="/#top" aria-label={`${site.name}, volver al inicio`}>
             <Logo />
-          </a>
+          </Link>
 
           <ul className="hidden items-center gap-1 md:flex">
             {site.nav.map((item) => (
               <li key={item.href}>
-                <a
+                <Link
                   href={item.href}
                   className="rounded-full px-4 py-2 text-sm text-muted transition-colors hover:bg-fg/5 hover:text-fg"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
 
           <div className="flex items-center gap-2">
-            <a
-              href="#contacto"
+            <Link
+              href="/#contacto"
               className="hidden rounded-full bg-fg px-4 py-2 text-sm font-medium text-ink transition-transform hover:scale-[1.03] sm:inline-flex"
             >
               Pedir propuesta
-            </a>
+            </Link>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -104,20 +105,20 @@ export function Navbar() {
             className="fixed inset-0 z-40 flex flex-col justify-end bg-ink/95 px-6 pb-12 backdrop-blur-2xl md:hidden"
           >
             <ul className="space-y-2">
-              {[...site.nav, { label: "Pedir propuesta", href: "#contacto" }].map((item, i) => (
+              {[...site.nav, { label: "Pedir propuesta", href: "/#contacto" }].map((item, i) => (
                 <motion.li
                   key={item.href}
                   initial={{ y: 40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.05 + i * 0.06, duration: 0.7, ease: EASE }}
                 >
-                  <a
+                  <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className="block py-2 text-5xl font-medium tracking-[-0.04em]"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
