@@ -17,7 +17,7 @@ const instrument = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Webs que convierten negocios en referentes`,
+    default: `${site.name} — Diseño y desarrollo web a medida para negocios locales`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Estudio de producto digital`,
+    title: `${site.name} — ${site.tagline}`,
     description: site.description,
   },
   robots: { index: true, follow: true },
