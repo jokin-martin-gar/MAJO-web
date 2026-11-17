@@ -23,7 +23,7 @@ export function FinalCTA() {
         <div className="mx-auto max-w-5xl text-center">
           <Reveal blur={false} y={12}>
             <p className="mb-8 inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-              <span className="size-1.5 animate-pulse-soft rounded-full bg-lime" />
+              <span className="size-1.5 animate-pulse-soft rounded-full bg-[#22c55e]" />
               Agenda abierta · condiciones de lanzamiento
             </p>
           </Reveal>
@@ -57,7 +57,7 @@ function Chip({
       aria-pressed={selected}
       className={cn(
         "relative rounded-full border px-4 py-2 text-sm transition-all duration-300",
-        selected ? "border-fg bg-fg text-ink" : "border-line-strong text-muted hover:border-white/40 hover:text-fg",
+        selected ? "border-fg bg-fg text-ink" : "border-line-strong text-muted hover:border-fg/40 hover:text-fg",
       )}
       {...rest}
     >
@@ -118,7 +118,7 @@ function ContactForm() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: EASE }}
-            className="flex flex-col items-center py-12 text-center text-cyan"
+            className="flex flex-col items-center py-12 text-center text-cyan-ink"
             role="status"
           >
             <CheckBurst className="size-20" />
@@ -200,7 +200,7 @@ function ContactForm() {
               </button>
             </div>
             {status === "error" && (
-              <p role="alert" className="text-center text-sm text-ember">
+              <p role="alert" className="text-center text-sm text-ember-ink">
                 {serverError}
               </p>
             )}
@@ -213,7 +213,7 @@ function ContactForm() {
 
 function FieldError({ children, id }: { children: React.ReactNode; id?: string }) {
   return (
-    <motion.p id={id} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} className="mt-2 text-xs text-ember">
+    <motion.p id={id} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} className="mt-2 text-xs text-ember-ink">
       {children}
     </motion.p>
   );

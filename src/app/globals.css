@@ -1,37 +1,108 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────
-   Design tokens
+   Colour system
+   ─────────────────────────────────────────────
+   Every colour lives here as a CSS variable. The page is light by default; any element with
+   `.theme-dark` re-scopes the same tokens to the dark palette (used for the footer and a few
+   highlight blocks). Components only ever use the Tailwind names below (bg-ink, text-fg,
+   border-line, text-violet-ink…), so they adapt automatically to either scope.
+
+   Token meaning:
+     ink ........ page background        fg ......... main text
+     ink-2 ...... cards / surfaces       muted ...... secondary text   (AA ≥ 4.5:1)
+     ink-3 ...... raised / hover         subtle ..... tertiary text    (AA ≥ 4.5:1)
+     line ....... hairlines              line-strong  stronger borders
+     violet, cyan, ember, lime ......... brand accents for fills, glows and dots
+     *-ink ............................. the same accents tuned for text (AA on the scope's bg)
+   Contrast ratios are listed in MEJORAS.md. */
+:root {
+  --ink: #faf8f4;
+  --ink-2: #ffffff;
+  --ink-3: #f3f0ea;
+  --fg: #16151b;
+  --muted: #55535d;
+  --subtle: #67646f;
+  --line: rgb(22 21 27 / 0.09);
+  --line-strong: rgb(22 21 27 / 0.16);
+
+  --violet-ink: #5b4bd6;
+  --cyan-ink: #0b7a6c;
+  --ember-ink: #c2410c;
+  --lime-ink: #456f0c;
+
+  --glass-bg: rgb(255 255 255 / 0.72);
+  --hair-a: rgb(22 21 27 / 0.14);
+  --hair-b: rgb(22 21 27 / 0.05);
+  --hair-c: rgb(22 21 27 / 0.1);
+  --grid-line: rgb(22 21 27 / 0.05);
+  --text-gradient: linear-gradient(100deg, #5b4bd6 0%, #7a5cf0 30%, #0b8a7a 65%, #5b4bd6 100%);
+  --card-shadow: 0 1px 2px rgb(22 21 27 / 0.04), 0 12px 32px -16px rgb(40 30 90 / 0.14);
+}
+
+.theme-dark {
+  --ink: #0b0b10;
+  --ink-2: #14141b;
+  --ink-3: #1c1c25;
+  --fg: #f3f2ee;
+  --muted: #a2a1ab;
+  --subtle: #8e8d97;
+  --line: rgb(255 255 255 / 0.09);
+  --line-strong: rgb(255 255 255 / 0.16);
+
+  --violet-ink: #a397ff;
+  --cyan-ink: #5ee6d0;
+  --ember-ink: #ff8a4c;
+  --lime-ink: #d4ff5c;
+
+  --glass-bg: rgb(255 255 255 / 0.06);
+  --hair-a: rgb(255 255 255 / 0.22);
+  --hair-b: rgb(255 255 255 / 0.03);
+  --hair-c: rgb(255 255 255 / 0.1);
+  --grid-line: rgb(255 255 255 / 0.05);
+  --text-gradient: linear-gradient(100deg, #fff 0%, #cfc9ff 35%, #5ee6d0 70%, #fff 100%);
+  --card-shadow: none;
+
+  color: var(--fg);
+  color-scheme: dark;
+}
+
+/* ─────────────────────────────────────────────
+   Design tokens (Tailwind)
    ───────────────────────────────────────────── */
 @theme inline {
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
 
-  --color-ink: #050507;
-  --color-ink-2: #0a0a0e;
-  --color-ink-3: #111117;
-  --color-fg: #f3f2ee;
-  --color-muted: #8b8b94;
-  --color-subtle: #5a5a63;
-  --color-line: rgb(255 255 255 / 0.08);
-  --color-line-strong: rgb(255 255 255 / 0.14);
-  --color-paper: #f4f2ee;
-  --color-paper-ink: #0e0e10;
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
 
+  /* Brand accents: identical in both themes. */
   --color-violet: #8b7cff;
   --color-cyan: #5ee6d0;
   --color-ember: #ff8a4c;
   --color-lime: #d4ff5c;
-  --color-violet-ink: #5b4bd6;
-  --color-cyan-ink: #0b7a6c;
+
+  /* Accents for text: darker on light, brighter on dark. */
+  --color-violet-ink: var(--violet-ink);
+  --color-cyan-ink: var(--cyan-ink);
+  --color-ember-ink: var(--ember-ink);
+  --color-lime-ink: var(--lime-ink);
+
+  --shadow-card: var(--card-shadow);
 
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-snappy: cubic-bezier(0.65, 0, 0.35, 1);
 
   --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
   --animate-aurora: aurora 18s ease-in-out infinite alternate;
-  --animate-shimmer: shimmer 2.8s linear infinite;
   --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
 
   @keyframes marquee {
@@ -42,10 +113,6 @@
     0% { transform: translate3d(-10%, -6%, 0) rotate(0deg) scale(1); }
     50% { transform: translate3d(6%, 4%, 0) rotate(12deg) scale(1.12); }
     100% { transform: translate3d(-4%, 8%, 0) rotate(-8deg) scale(0.96); }
-  }
-  @keyframes shimmer {
-    from { background-position: 200% 0; }
-    to { background-position: -200% 0; }
   }
   @keyframes pulse-soft {
     0%, 100% { opacity: 1; transform: scale(1); }
@@ -58,7 +125,7 @@
    ───────────────────────────────────────────── */
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   html {
@@ -81,12 +148,15 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-violet);
+    outline: 2px solid var(--violet-ink);
     outline-offset: 3px;
     border-radius: 6px;
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
     *,
     *::before,
     *::after {
@@ -113,38 +183,30 @@
 }
 
 @utility text-gradient {
-  background: linear-gradient(100deg, #fff 0%, #cfc9ff 35%, var(--color-cyan) 70%, #fff 100%);
+  background: var(--text-gradient);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-}
-
-@utility text-shimmer {
-  background: linear-gradient(90deg, var(--color-muted) 0%, #fff 50%, var(--color-muted) 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: var(--animate-shimmer);
 }
 
 @utility glass {
-  background: linear-gradient(180deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0.02));
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border: 1px solid var(--color-line);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid var(--line);
 }
 
 @utility hairline-gradient {
   position: relative;
+  box-shadow: var(--card-shadow);
   &::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(160deg, rgb(255 255 255 / 0.22), rgb(255 255 255 / 0.03) 40%, rgb(255 255 255 / 0.1));
+    background: linear-gradient(160deg, var(--hair-a), var(--hair-b) 40%, var(--hair-c));
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -154,8 +216,8 @@
 
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 

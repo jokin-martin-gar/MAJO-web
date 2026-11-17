@@ -49,11 +49,10 @@ export function Process() {
   const ActiveVisual = STEPS[active].Visual;
 
   return (
-    <section id="proceso" className="relative bg-paper py-28 text-paper-ink sm:py-40" aria-labelledby="process-title">
+    <section id="proceso" className="relative py-28 sm:py-40" aria-labelledby="process-title">
       <div className="container-x">
         <SectionIntro
           id="process-title"
-          tone="light"
           index="05"
           eyebrow="Proceso"
           title="Unas seis semanas. Cero sorpresas. Una experiencia que disfrutarás."
@@ -65,7 +64,7 @@ export function Process() {
           {/* Sticky visual */}
           <div className="hidden lg:block">
             <div className="sticky top-28">
-              <div className="relative aspect-square overflow-hidden rounded-[32px] bg-paper-ink text-fg">
+              <div className="relative aspect-square overflow-hidden rounded-[32px] bg-ink text-fg theme-dark">
                 <div aria-hidden className="absolute inset-0 bg-grid opacity-40 mask-radial" />
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -91,8 +90,8 @@ export function Process() {
 
           {/* Steps */}
           <ol ref={listRef} className="relative">
-            <div aria-hidden className="absolute bottom-0 left-[11px] top-0 w-px bg-black/10">
-              <motion.div style={{ scaleY: line }} className="h-full w-full origin-top bg-paper-ink" />
+            <div aria-hidden className="absolute bottom-0 left-[11px] top-0 w-px bg-line-strong">
+              <motion.div style={{ scaleY: line }} className="h-full w-full origin-top bg-fg" />
             </div>
             {STEPS.map((s, i) => (
               <Step key={s.n} step={s} index={i} active={active === i} onActive={setActive} />
@@ -126,31 +125,31 @@ function Step({
     <li ref={ref} className="relative pb-24 pl-14 last:pb-0 lg:min-h-[52vh]">
       <span
         className={cn(
-          "absolute left-0 top-1 grid size-6 place-items-center rounded-full border-2 bg-paper transition-all duration-500",
-          active ? "scale-110 border-paper-ink bg-paper-ink" : "border-black/20",
+          "absolute left-0 top-1 grid size-6 place-items-center rounded-full border-2 bg-ink transition-all duration-500",
+          active ? "scale-110 border-fg bg-fg" : "border-line-strong",
         )}
         aria-hidden
       >
-        <span className={cn("size-1.5 rounded-full transition-colors", active ? "bg-paper" : "bg-transparent")} />
+        <span className={cn("size-1.5 rounded-full transition-colors", active ? "bg-ink" : "bg-transparent")} />
       </span>
-      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-black/45">
+      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
         {step.n} · {step.when}
       </p>
       <h3
         className={cn(
           "mt-3 text-[clamp(2rem,4vw,3.2rem)] font-medium leading-none tracking-[-0.04em] transition-opacity duration-500",
-          active ? "opacity-100" : "opacity-35",
+          active ? "opacity-100" : "opacity-45",
         )}
       >
         {step.title}
       </h3>
-      <p className={cn("mt-5 max-w-md text-lg leading-relaxed transition-colors duration-500", active ? "text-black/70" : "text-black/35")}>
+      <p className={cn("mt-5 max-w-md text-lg leading-relaxed transition-colors duration-500", active ? "text-fg/80" : "text-muted")}>
         {step.body}
       </p>
-      <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs">
+      <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-line bg-ink-2 px-3 py-1.5 text-xs shadow-card">
         <span className="size-1.5 rounded-full bg-[#16a34a]" /> Entregable: {step.deliverable}
       </p>
-      <div className="mt-8 aspect-[4/3] overflow-hidden rounded-3xl bg-paper-ink p-8 text-fg lg:hidden">
+      <div className="mt-8 aspect-[4/3] overflow-hidden rounded-3xl bg-ink p-8 text-fg theme-dark lg:hidden">
         <div className="grid size-full place-items-center">
           <step.Visual />
         </div>
@@ -204,7 +203,7 @@ function ArtVisual() {
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
             transition={{ delay: 0.1 * i, duration: 0.6, ease: EASE }}
-            className="flex-1 origin-bottom rounded-xl ring-1 ring-white/10"
+            className="flex-1 origin-bottom rounded-xl ring-1 ring-fg/10"
             style={{ background: c }}
           />
         ))}
@@ -216,7 +215,7 @@ function ArtVisual() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 + 0.1 * i }}
-            className="h-16 rounded-xl border border-white/10 bg-white/5"
+            className="h-16 rounded-xl border border-fg/10 bg-fg/5"
           />
         ))}
       </div>
@@ -226,15 +225,15 @@ function ArtVisual() {
 
 function BuildVisual() {
   const lines = [
-    ["<Hero", "text-violet"],
-    ["  title=\"Tu negocio, referente\"", "text-cyan"],
-    ["  motion=\"premium\"", "text-cyan"],
-    ["/>", "text-violet"],
-    ["<Reservas online realtime />", "text-ember"],
-    ["<Seo local score={100} />", "text-lime"],
+    ["<Hero", "text-violet-ink"],
+    ["  title=\"Tu negocio, referente\"", "text-cyan-ink"],
+    ["  motion=\"premium\"", "text-cyan-ink"],
+    ["/>", "text-violet-ink"],
+    ["<Reservas online realtime />", "text-ember-ink"],
+    ["<Seo local score={100} />", "text-lime-ink"],
   ];
   return (
-    <div className="w-full rounded-2xl border border-white/10 bg-black/40 p-5 font-mono text-[13px] leading-7" aria-hidden>
+    <div className="w-full rounded-2xl border border-fg/10 bg-black/40 p-5 font-mono text-[13px] leading-7" aria-hidden>
       {lines.map(([l, c], i) => (
         <motion.p
           key={i}
@@ -243,14 +242,14 @@ function BuildVisual() {
           transition={{ delay: 0.12 * i, duration: 0.4 }}
           className={c}
         >
-          <span className="mr-4 text-white/20">{i + 1}</span>
+          <span className="mr-4 text-fg/20">{i + 1}</span>
           {l}
         </motion.p>
       ))}
       <motion.span
         animate={{ opacity: [1, 0, 1] }}
         transition={{ duration: 1, repeat: Infinity }}
-        className="ml-8 inline-block h-4 w-2 bg-white/70 align-middle"
+        className="ml-8 inline-block h-4 w-2 bg-fg/70 align-middle"
       />
     </div>
   );
@@ -261,7 +260,7 @@ function LaunchVisual() {
   return (
     <div className="flex size-full flex-col justify-end" aria-hidden>
       <p className="text-5xl font-medium tracking-[-0.05em]">
-        Informe <span className="font-serif italic text-cyan">mensual</span>
+        Informe <span className="font-serif italic text-cyan-ink">mensual</span>
       </p>
       <p className="mt-2 text-sm text-muted">Ejemplo: solicitudes recibidas cada mes</p>
       <div className="mt-8 flex h-40 items-end gap-2">

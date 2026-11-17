@@ -48,7 +48,9 @@ const TABS = Object.keys(VIEWS) as Tab[];
 const W = 640;
 const H = 180;
 const MAX = 330;
-const STEP = W / 17;
+// 5 steps of "before" + 11 steps of "after" = 16 steps, so the series ends exactly at the right
+// edge where the end dot sits and the area closes (it used to stop short and leave a diagonal).
+const STEP = W / 16;
 const LAUNCH_X = 5 * STEP;
 
 function toPath(values: number[], offsetX = 0) {
@@ -81,7 +83,7 @@ export function GrowthConsole() {
             Ejemplo
           </span>
         </div>
-        <div role="tablist" aria-label="Vista del panel" className="flex gap-0.5 rounded-lg bg-white/[0.04] p-0.5">
+        <div role="tablist" aria-label="Vista del panel" className="flex gap-0.5 rounded-lg bg-fg/[0.04] p-0.5">
           {TABS.map((t) => (
             <button
               key={t}
@@ -97,7 +99,7 @@ export function GrowthConsole() {
               {tab === t && (
                 <motion.span
                   layoutId="console-tab"
-                  className="absolute inset-0 rounded-md bg-white/10"
+                  className="absolute inset-0 rounded-md bg-fg/10"
                   transition={{ type: "spring", stiffness: 400, damping: 32 }}
                 />
               )}
@@ -122,7 +124,7 @@ export function GrowthConsole() {
               <p className="mt-1 text-lg font-medium tracking-tight sm:text-2xl">
                 <Counter to={k.to} decimals={k.decimals} suffix={k.suffix} duration={1.8} />
               </p>
-              <p className="mt-1 inline-flex items-center gap-1 rounded-full bg-cyan/10 px-1.5 py-0.5 font-mono text-[10px] text-cyan">
+              <p className="mt-1 inline-flex items-center gap-1 rounded-full bg-cyan/10 px-1.5 py-0.5 font-mono text-[10px] text-cyan-ink">
                 {k.delta}
               </p>
             </motion.div>
@@ -134,7 +136,7 @@ export function GrowthConsole() {
         <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] text-muted">
           <span className="text-fg/80">{view.caption}</span>
           <span className="flex items-center gap-1.5">
-            <span className="h-px w-4 border-t border-dashed border-white/40" /> Web anterior
+            <span className="h-px w-4 border-t border-dashed border-fg/40" /> Web anterior
           </span>
           <span className="flex items-center gap-1.5">
             <span className="h-0.5 w-4 rounded bg-gradient-to-r from-violet to-cyan" /> Web nueva
@@ -143,14 +145,14 @@ export function GrowthConsole() {
         </div>
         <svg
           viewBox={`0 0 ${W} ${H + 8}`}
-          className="h-auto w-full overflow-visible"
+          className="h-auto w-full overflow-visible text-fg"
           role="img"
           aria-label={`Gráfico de ejemplo con datos simulados de ${view.caption.toLowerCase()} antes y después de lanzar una web nueva`}
         >
           <defs>
             <linearGradient id="gc-line" x1="0" x2="1">
               <stop offset="0" stopColor="#8b7cff" />
-              <stop offset="1" stopColor="#5ee6d0" />
+              <stop offset="1" stopColor="#14b8a6" />
             </linearGradient>
             <linearGradient id="gc-area" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stopColor="#8b7cff" stopOpacity="0.35" />
@@ -159,10 +161,10 @@ export function GrowthConsole() {
           </defs>
 
           {[0.25, 0.5, 0.75, 1].map((r) => (
-            <line key={r} x1="0" x2={W} y1={H * r} y2={H * r} stroke="rgba(255,255,255,0.05)" />
+            <line key={r} x1="0" x2={W} y1={H * r} y2={H * r} stroke="currentColor" strokeOpacity="0.07" />
           ))}
-          <line x1={LAUNCH_X} x2={LAUNCH_X} y1="0" y2={H} stroke="rgba(255,255,255,0.18)" strokeDasharray="2 4" />
-          <text x={LAUNCH_X + 8} y="14" fill="rgba(255,255,255,0.5)" fontSize="10" fontFamily="var(--font-geist-mono)">
+          <line x1={LAUNCH_X} x2={LAUNCH_X} y1="0" y2={H} stroke="currentColor" strokeOpacity="0.25" strokeDasharray="2 4" />
+          <text x={LAUNCH_X + 8} y="14" fill="currentColor" fillOpacity="0.6" fontSize="10" fontFamily="var(--font-geist-mono)">
             Lanzamiento
           </text>
 
@@ -170,7 +172,7 @@ export function GrowthConsole() {
             animate={{ d: toPath(view.before) }}
             transition={{ duration: 0.8, ease: EASE }}
             fill="none"
-            stroke="rgba(255,255,255,0.35)"
+            stroke="currentColor" strokeOpacity="0.35"
             strokeWidth="1.5"
             strokeDasharray="3 4"
           />
@@ -195,8 +197,8 @@ export function GrowthConsole() {
             animate={{ opacity: 1, y: endY }}
             transition={{ opacity: { delay: 3, duration: 0.6 }, y: { duration: 0.8, ease: EASE } }}
           >
-            <circle cx={W} cy={0} r="10" fill="#5ee6d0" opacity="0.2" className="animate-pulse-soft" style={{ transformBox: "fill-box", transformOrigin: "center" }} />
-            <circle cx={W} cy={0} r="4" fill="#5ee6d0" />
+            <circle cx={W} cy={0} r="10" fill="#14b8a6" opacity="0.2" className="animate-pulse-soft" style={{ transformBox: "fill-box", transformOrigin: "center" }} />
+            <circle cx={W} cy={0} r="4" fill="#14b8a6" />
           </motion.g>
         </svg>
       </div>

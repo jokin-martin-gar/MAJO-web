@@ -46,10 +46,10 @@ export function MagneticButton({
       style={{ x, y }}
       whileTap={{ scale: 0.96 }}
       className={cn(
-        "group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-6 py-3.5 text-[15px] font-medium tracking-tight transition-colors duration-300",
+        "group relative inline-flex items-center gap-2 overflow-hidden whitespace-nowrap rounded-full px-6 py-3.5 text-[15px] font-medium tracking-tight transition-colors duration-300",
         variant === "primary" &&
-          "bg-fg text-ink shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_8px_40px_-8px_rgba(139,124,255,0.6)]",
-        variant === "ghost" && "glass text-fg hover:bg-white/10",
+          "bg-fg text-ink shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_8px_32px_-10px_rgba(109,92,240,0.55)]",
+        variant === "ghost" && "glass text-fg hover:bg-fg/10",
         className,
       )}
     >

@@ -45,13 +45,13 @@ function Word({
   range: [number, number];
   accent: boolean;
 }) {
-  const opacity = useTransform(progress, range, [0.12, 1]);
+  const opacity = useTransform(progress, range, [0.16, 1]);
   const y = useTransform(progress, range, [6, 0]);
   return (
     <motion.span
       aria-hidden
       style={{ opacity, y }}
-      className={cn("mr-[0.25em] inline-block", accent && "font-serif italic text-ember")}
+      className={cn("mr-[0.25em] inline-block", accent && "font-serif italic text-ember-ink")}
     >
       {children}
     </motion.span>

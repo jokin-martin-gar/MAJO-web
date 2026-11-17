@@ -8,7 +8,7 @@ import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { EASE, cn } from "@/lib/utils";
 
 // Each demo is its own chunk: they only load when the portfolio is reached.
-const Loading = () => <div className="h-full animate-pulse bg-white/[0.03]" />;
+const Loading = () => <div className="h-full animate-pulse bg-fg/[0.03]" />;
 const RestaurantDemo = dynamic(() => import("@/components/portfolio/demos/RestaurantDemo").then((m) => m.RestaurantDemo), { loading: Loading });
 const DentalDemo = dynamic(() => import("@/components/portfolio/demos/DentalDemo").then((m) => m.DentalDemo), { loading: Loading });
 const GymDemo = dynamic(() => import("@/components/portfolio/demos/GymDemo").then((m) => m.GymDemo), { loading: Loading });
@@ -151,7 +151,7 @@ export function Portfolio() {
                 tabIndex={active === i ? 0 : -1}
                 className={cn(
                   "group relative shrink-0 rounded-2xl px-4 py-3 text-left transition-colors lg:rounded-none lg:border-b lg:border-line lg:px-0 lg:py-5",
-                  active === i ? "bg-white/[0.06] lg:bg-transparent" : "hover:bg-white/[0.03] lg:hover:bg-transparent",
+                  active === i ? "bg-fg/[0.06] lg:bg-transparent" : "hover:bg-fg/[0.03] lg:hover:bg-transparent",
                 )}
               >
                 <div className="flex items-center gap-3">

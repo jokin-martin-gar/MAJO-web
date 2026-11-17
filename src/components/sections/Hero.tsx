@@ -88,8 +88,8 @@ export function Hero() {
     >
       {/* Atmosphere */}
       <div aria-hidden className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-[-20%] h-[900px] w-[1400px] -translate-x-1/2 animate-aurora rounded-full bg-[radial-gradient(closest-side,rgba(139,124,255,0.28),transparent)]" />
-        <div className="absolute right-[-10%] top-[30%] h-[600px] w-[700px] animate-aurora rounded-full bg-[radial-gradient(closest-side,rgba(94,230,208,0.14),transparent)] [animation-delay:-6s]" />
+        <div className="absolute left-1/2 top-[-20%] h-[900px] w-[1400px] -translate-x-1/2 animate-aurora rounded-full bg-[radial-gradient(closest-side,rgba(139,124,255,0.22),transparent)]" />
+        <div className="absolute right-[-10%] top-[30%] h-[600px] w-[700px] animate-aurora rounded-full bg-[radial-gradient(closest-side,rgba(94,230,208,0.22),transparent)] [animation-delay:-6s]" />
         <SignalField className="absolute inset-0 size-full mask-radial" />
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent to-ink" />
       </div>

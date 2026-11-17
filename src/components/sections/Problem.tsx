@@ -62,7 +62,7 @@ export function Problem() {
               transition={{ duration: 0.9, ease: EASE, delay: i * 0.1 }}
               className="group relative bg-ink p-8 transition-colors duration-500 hover:bg-ink-2 sm:p-10"
             >
-              <p className="text-[clamp(3rem,6vw,5rem)] font-medium leading-none tracking-[-0.05em] text-fg transition-colors duration-500 group-hover:text-ember">
+              <p className="text-[clamp(3rem,6vw,5rem)] font-medium leading-none tracking-[-0.05em] text-fg transition-colors duration-500 group-hover:text-ember-ink">
                 <Counter to={s.value} decimals={s.decimals} suffix={s.suffix} />
               </p>
               <h3 className="mt-6 text-lg font-medium tracking-tight">{s.title}</h3>

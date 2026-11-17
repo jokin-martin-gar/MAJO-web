@@ -28,12 +28,12 @@ export function FoundingClients() {
     },
     {
       t: "Atención prioritaria",
-      d: "Sois pocos y lo notarás: respuesta rápida y acceso directo a quien diseña y programa tu web.",
+      d: "Al trabajar con pocos clientes a la vez, lo notarás: respuesta rápida y acceso directo a quien diseña y programa tu web.",
     },
   ];
 
   return (
-    <section id="primeros-clientes" className="relative py-28 sm:py-40" aria-labelledby="founding-title">
+    <section id="primeros-clientes" className="relative pb-28 pt-4 sm:pb-40" aria-labelledby="founding-title">
       <div className="container-x">
         <div className="theme-dark relative isolate overflow-hidden rounded-[32px] bg-ink px-6 py-14 text-fg sm:px-12 sm:py-20">
           <div

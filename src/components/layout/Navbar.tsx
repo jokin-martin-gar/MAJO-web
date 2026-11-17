@@ -41,7 +41,7 @@ export function Navbar() {
           aria-label="Principal"
           className={cn(
             "flex w-full max-w-5xl items-center justify-between rounded-full py-2 pl-4 pr-2 transition-all duration-500",
-            scrolled ? "glass shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)]" : "border border-transparent",
+            scrolled ? "glass shadow-[0_10px_40px_-14px_rgba(30,25,60,0.25)]" : "border border-transparent",
           )}
         >
           <a href="#top" aria-label={`${site.name}, volver al inicio`}>
@@ -53,7 +53,7 @@ export function Navbar() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="rounded-full px-4 py-2 text-sm text-muted transition-colors hover:bg-white/5 hover:text-fg"
+                  className="rounded-full px-4 py-2 text-sm text-muted transition-colors hover:bg-fg/5 hover:text-fg"
                 >
                   {item.label}
                 </a>

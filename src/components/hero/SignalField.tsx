@@ -77,12 +77,12 @@ export function SignalField({ className }: { className?: string }) {
           const y = by + (dy / d) * push;
 
           const radius = 0.7 + k * 1.9;
-          const alpha = 0.07 + wave * 0.05 + k * 0.85;
+          const alpha = 0.1 + wave * 0.06 + k * 0.7;
 
-          // Violet → cyan as intensity grows.
-          const rr = Math.round(139 + (94 - 139) * k);
-          const gg = Math.round(124 + (230 - 124) * k);
-          const bb = Math.round(255 + (208 - 255) * k);
+          // Deep violet → teal as intensity grows (tuned to read on the light background).
+          const rr = Math.round(109 + (20 - 109) * k);
+          const gg = Math.round(92 + (184 - 92) * k);
+          const bb = Math.round(240 + (166 - 240) * k);
           ctx.fillStyle = `rgba(${rr},${gg},${bb},${alpha})`;
           ctx.beginPath();
           ctx.arc(x, y, radius, 0, Math.PI * 2);

@@ -4,7 +4,7 @@ import { Logo } from "@/components/ui/Logo";
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden border-t border-line pt-16">
+    <footer className="theme-dark relative overflow-hidden bg-ink pt-16">
       <div className="container-x">
         <div className="flex flex-col justify-between gap-10 md:flex-row">
           <div className="max-w-xs">
@@ -65,7 +65,7 @@ export function Footer() {
       {/* Monumental wordmark */}
       <p
         aria-hidden
-        className="pointer-events-none select-none bg-gradient-to-b from-white/[0.09] to-transparent bg-clip-text text-center text-[28vw] font-semibold leading-[0.75] tracking-[-0.08em] text-transparent"
+        className="pointer-events-none select-none bg-gradient-to-b from-fg/[0.09] to-transparent bg-clip-text text-center text-[28vw] font-semibold leading-[0.75] tracking-[-0.08em] text-transparent"
       >
         MAJO
       </p>

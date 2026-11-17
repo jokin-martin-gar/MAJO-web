@@ -135,13 +135,13 @@ function PerformanceCell() {
         body="Cada segundo de carga cuesta clientes. No entregamos una web hasta que pasa las métricas de Google en verde."
       />
       <div className="mt-8">
-        <p className="text-6xl font-medium tracking-[-0.05em] text-cyan">
+        <p className="text-6xl font-medium tracking-[-0.05em] text-cyan-ink">
           <Counter to={90} suffix="+" duration={1.6} />
         </p>
         <p className="mt-1 font-mono text-[11px] text-muted">Lighthouse, objetivo mínimo</p>
         <div className="mt-5 flex gap-2">
           {vitals.map((v) => (
-            <div key={v.k} className="flex-1 rounded-xl border border-line bg-white/[0.02] px-3 py-2">
+            <div key={v.k} className="flex-1 rounded-xl border border-line bg-fg/[0.02] px-3 py-2">
               <p className="font-mono text-[10px] text-muted">{v.k}</p>
               <p className="text-sm font-medium">{v.v}</p>
             </div>
@@ -169,7 +169,7 @@ function MotionCell() {
     <SpotlightCard className="flex h-full flex-col justify-between p-7">
       <CellLabel title="Movimiento con física" body="La diferencia entre algo que se mueve y algo que se siente vivo." />
       <div ref={ref} className="mt-8">
-        <div className="relative h-12 rounded-full border border-line bg-white/[0.02]">
+        <div className="relative h-12 rounded-full border border-line bg-fg/[0.02]">
           {/* The rail is as wide as the ball's travel, so translating it by 100% lands exactly at the end. */}
           <div className="absolute inset-y-1.5 left-1.5 right-[calc(0.375rem+2.25rem)]">
             <motion.span
@@ -199,7 +199,7 @@ function MotionCell() {
               }}
               className={cn(
                 "flex-1 rounded-full py-1.5 transition-colors",
-                crafted === o.v ? "bg-white/10 text-fg" : "text-muted hover:text-fg",
+                crafted === o.v ? "bg-fg/10 text-fg" : "text-muted hover:text-fg",
               )}
             >
               {o.label}
@@ -235,7 +235,7 @@ function ColorCell() {
             aria-label={`${s.n} ${s.c}`}
             animate={{ flexGrow: active === i ? 4 : 1 }}
             transition={{ duration: 0.6, ease: EASE }}
-            className="relative min-w-0 basis-0 overflow-hidden rounded-xl ring-1 ring-white/10"
+            className="relative min-w-0 basis-0 overflow-hidden rounded-xl ring-1 ring-fg/10"
             style={{ backgroundColor: s.c }}
           >
             <motion.span
@@ -283,9 +283,9 @@ function ResponsiveCell() {
           layout
           transition={{ duration: 0.8, ease: EASE }}
           style={{ width: device.w }}
-          className="h-full overflow-hidden rounded-lg border border-line-strong bg-white/[0.03] p-2"
+          className="h-full overflow-hidden rounded-lg border border-line-strong bg-fg/[0.03] p-2"
         >
-          <div className="mb-2 h-2 w-1/3 rounded-full bg-white/20" />
+          <div className="mb-2 h-2 w-1/3 rounded-full bg-fg/20" />
           <motion.div
             layout
             className="grid gap-1.5"
@@ -296,7 +296,7 @@ function ResponsiveCell() {
                 layout
                 key={i}
                 transition={{ duration: 0.8, ease: EASE }}
-                className={cn("h-7 rounded-md", i === 0 ? "bg-violet/40" : "bg-white/[0.07]")}
+                className={cn("h-7 rounded-md", i === 0 ? "bg-violet/40" : "bg-fg/[0.07]")}
               />
             ))}
           </motion.div>

@@ -79,7 +79,7 @@ export function ScoreRing({ className }: { className?: string }) {
         />
       </svg>
       <div>
-        <p className="text-2xl font-semibold leading-none tracking-tight text-cyan">90+</p>
+        <p className="text-2xl font-semibold leading-none tracking-tight text-cyan-ink">90+</p>
         <p className="mt-1 text-[11px] text-muted">Rendimiento objetivo</p>
       </div>
     </div>
@@ -90,7 +90,7 @@ export function ScoreRing({ className }: { className?: string }) {
 export function SearchCard({ className }: { className?: string }) {
   return (
     <div className={cn("glass w-[300px] rounded-2xl p-4 shadow-2xl", className)}>
-      <div className="mb-3 flex items-center gap-2 rounded-full bg-white/[0.05] px-3 py-1.5 text-[11px] text-muted">
+      <div className="mb-3 flex items-center gap-2 rounded-full bg-fg/[0.05] px-3 py-1.5 text-[11px] text-muted">
         <svg viewBox="0 0 16 16" className="size-3" aria-hidden fill="none" stroke="currentColor" strokeWidth="1.6">
           <circle cx="7" cy="7" r="4.5" />
           <path d="m10.5 10.5 3 3" strokeLinecap="round" />
@@ -98,10 +98,10 @@ export function SearchCard({ className }: { className?: string }) {
         dentista cerca de mí
       </div>
       <div className="flex items-start gap-2.5">
-        <span className="mt-0.5 rounded-md bg-lime/15 px-1.5 py-0.5 font-mono text-[10px] font-medium text-lime">#1</span>
+        <span className="mt-0.5 rounded-md bg-lime/15 px-1.5 py-0.5 font-mono text-[10px] font-medium text-lime-ink">#1</span>
         <div className="min-w-0">
           <p className="truncate text-[11px] text-muted">tunegocio.es</p>
-          <p className="truncate text-[13px] font-medium text-[#a8b4ff]">Tu negocio · lo primero que ven</p>
+          <p className="truncate text-[13px] font-medium text-violet-ink">Tu negocio · lo primero que ven</p>
           <p className="mt-0.5 text-[11px] text-muted">El objetivo: que te encuentren antes que a la competencia.</p>
         </div>
       </div>
@@ -113,13 +113,13 @@ export function SearchCard({ className }: { className?: string }) {
 export function SpeedChip({ className }: { className?: string }) {
   return (
     <div className={cn("glass flex items-center gap-2.5 rounded-full py-2 pl-2 pr-4 shadow-2xl", className)}>
-      <span className="grid size-7 place-items-center rounded-full bg-violet/20 text-violet" aria-hidden>
+      <span className="grid size-7 place-items-center rounded-full bg-violet/20 text-violet-ink" aria-hidden>
         <svg viewBox="0 0 16 16" className="size-3.5" fill="currentColor">
           <path d="M9 1 3 9h4l-1 6 6-8H8l1-6Z" />
         </svg>
       </span>
       <span className="text-[12px]">
-        Objetivo de carga <span className="font-mono text-fg">&lt; 1 s</span>
+        Objetivo de carga: <span className="font-medium text-fg">menos de 1 s</span>
       </span>
     </div>
   );
