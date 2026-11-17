@@ -98,6 +98,9 @@ export function Navbar() {
         {open && (
           <motion.div
             id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menú"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -115,7 +118,7 @@ export function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="block py-2 text-5xl font-medium tracking-[-0.04em]"
+                    className="block py-2 text-[clamp(2.25rem,11vw,3rem)] font-medium tracking-[-0.04em]"
                   >
                     {item.label}
                   </Link>

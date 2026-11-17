@@ -67,10 +67,10 @@ export function Objections() {
                       id={panelId}
                       role="region"
                       aria-labelledby={buttonId}
-                      initial={{ height: 0, opacity: 0, filter: "blur(4px)" }}
-                      animate={{ height: "auto", opacity: 1, filter: "blur(0px)" }}
-                      exit={{ height: 0, opacity: 0, filter: "blur(4px)" }}
-                      transition={{ duration: 0.5, ease: EASE }}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: EASE }}
                       className="overflow-hidden"
                     >
                       <p className="max-w-2xl pb-8 pr-16 text-[17px] leading-relaxed text-muted">{item.a}</p>

@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 import { SplitWords } from "@/components/ui/SplitWords";
 import { Reveal } from "@/components/ui/Reveal";
@@ -201,9 +202,9 @@ function ContactForm() {
             </div>
             <p className="text-center text-xs leading-relaxed text-muted sm:text-left">
               Usaremos tus datos solo para responder a tu solicitud. Más información en nuestra{" "}
-              <a href="/privacidad" className="text-fg underline underline-offset-4">
+              <Link href="/privacidad" className="text-fg underline underline-offset-4">
                 política de privacidad
-              </a>
+              </Link>
               .
             </p>
             {status === "error" && (
