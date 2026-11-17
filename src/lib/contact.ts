@@ -7,7 +7,7 @@ export const BUSINESS_TYPES = [
   "Otro",
 ] as const;
 
-export const BUDGETS = ["< 3.000 €", "3.000 – 6.000 €", "6.000 – 12.000 €", "+ 12.000 €"] as const;
+export const BUDGETS = ["450 – 1.000 €", "1.000 – 2.500 €", "+ 2.500 €"] as const;
 
 export type ContactPayload = {
   name: string;
