@@ -27,6 +27,12 @@ export function SplitWords({
   immediate = false,
 }: SplitWordsProps) {
   const words = text.split(" ");
+  // Blur is only used for the on-load reveal. Scroll-triggered reveals stick to transform +
+  // opacity, which the compositor animates without repainting while the page is moving.
+  const hidden = immediate
+    ? { y: "105%", opacity: 0, filter: "blur(10px)" }
+    : { y: "105%", opacity: 0 };
+  const show = immediate ? { y: "0%", opacity: 1, filter: "blur(0px)" } : { y: "0%", opacity: 1 };
   const trigger = immediate
     ? { animate: "show" as const }
     : { whileInView: "show" as const, viewport: { once: true, margin: "-10% 0px" } };
@@ -46,13 +52,10 @@ export function SplitWords({
             <span key={`${word}-${i}`} className="inline-block overflow-hidden pb-[0.12em] -mb-[0.12em] align-bottom">
               <motion.span
                 className={cn(
-                  "inline-block will-change-transform",
+                  "inline-block",
                   isAccent && "font-serif italic font-normal tracking-normal text-gradient",
                 )}
-                variants={{
-                  hidden: { y: "105%", opacity: 0, filter: "blur(10px)" },
-                  show: { y: "0%", opacity: 1, filter: "blur(0px)" },
-                }}
+                variants={{ hidden, show }}
                 transition={{ duration: 1.1, ease: EASE }}
               >
                 {word}

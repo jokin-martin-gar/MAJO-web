@@ -107,11 +107,18 @@ export function Portfolio() {
   return (
     <section id="portfolio" className="relative py-28 sm:py-40" aria-labelledby="portfolio-title">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <motion.div
-          animate={{ backgroundColor: project.color }}
-          transition={{ duration: 1.2, ease: EASE }}
-          className="absolute left-1/2 top-1/3 h-[700px] w-[1100px] -translate-x-1/2 rounded-full opacity-[0.09] blur-[140px]"
-        />
+        {/* A soft radial gradient instead of a 140px CSS blur: same glow, no expensive filter. */}
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.16 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1, ease: EASE }}
+            className="absolute left-1/2 top-1/3 h-[700px] w-[1100px] -translate-x-1/2"
+            style={{ background: `radial-gradient(closest-side, ${project.color}, transparent)` }}
+          />
+        </AnimatePresence>
       </div>
 
       <div className="container-x">
@@ -223,10 +230,10 @@ export function Portfolio() {
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={project.id}
-                      initial={{ opacity: 0, scale: 0.98, filter: "blur(10px)" }}
-                      animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, scale: 1.02, filter: "blur(10px)" }}
-                      transition={{ duration: 0.5, ease: EASE }}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.02 }}
+                      transition={{ duration: 0.4, ease: EASE }}
                       className="absolute inset-0"
                     >
                       <Demo />

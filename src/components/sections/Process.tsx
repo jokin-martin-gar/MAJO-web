@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useInView, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useInView, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { EASE, cn } from "@/lib/utils";
@@ -44,7 +44,8 @@ export function Process() {
   const [active, setActive] = useState(0);
   const listRef = useRef<HTMLOListElement>(null);
   const { scrollYProgress } = useScroll({ target: listRef, offset: ["start 0.6", "end 0.6"] });
-  const line = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+  // Driven directly by scroll (no spring), so the progress line never trails behind the page.
+  const line = scrollYProgress;
   const ActiveVisual = STEPS[active].Visual;
 
   return (
@@ -69,10 +70,10 @@ export function Process() {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={active}
-                    initial={{ opacity: 0, scale: 0.94, filter: "blur(12px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, scale: 1.04, filter: "blur(12px)" }}
-                    transition={{ duration: 0.7, ease: EASE }}
+                    initial={{ opacity: 0, scale: 0.94 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.04 }}
+                    transition={{ duration: 0.5, ease: EASE }}
                     className="absolute inset-0 grid place-items-center p-12"
                   >
                     <ActiveVisual />
@@ -267,10 +268,11 @@ function LaunchVisual() {
         {bars.map((b, i) => (
           <motion.div
             key={i}
-            initial={{ height: 0 }}
-            animate={{ height: `${b}%` }}
+            initial={{ scaleY: 0 }}
+            animate={{ scaleY: 1 }}
             transition={{ delay: 0.08 * i, duration: 0.7, ease: EASE }}
-            className="flex-1 rounded-t-md bg-gradient-to-t from-violet/40 to-cyan"
+            style={{ height: `${b}%` }}
+            className="flex-1 origin-bottom rounded-t-md bg-gradient-to-t from-violet/40 to-cyan"
           />
         ))}
       </div>

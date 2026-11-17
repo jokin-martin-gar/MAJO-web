@@ -60,7 +60,6 @@ export function Hero() {
   const stageY = useTransform(scrollYProgress, [0, 0.45], [0, -40]);
   const copyY = useTransform(scrollYProgress, [0, 0.5], [0, -120]);
   const copyOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
-  const copyBlur = useTransform(scrollYProgress, [0, 0.35], ["blur(0px)", "blur(12px)"]);
 
   // Pointer: layered parallax, each floating element at its own depth.
   const mxRaw = useMotionValue(0);
@@ -90,13 +89,13 @@ export function Hero() {
     >
       {/* Atmosphere */}
       <div aria-hidden className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-[-20%] h-[900px] w-[1400px] -translate-x-1/2 animate-aurora rounded-full bg-[radial-gradient(closest-side,rgba(139,124,255,0.28),transparent)] blur-3xl" />
-        <div className="absolute right-[-10%] top-[30%] h-[600px] w-[700px] animate-aurora rounded-full bg-[radial-gradient(closest-side,rgba(94,230,208,0.14),transparent)] blur-3xl [animation-delay:-6s]" />
+        <div className="absolute left-1/2 top-[-20%] h-[900px] w-[1400px] -translate-x-1/2 animate-aurora rounded-full bg-[radial-gradient(closest-side,rgba(139,124,255,0.28),transparent)]" />
+        <div className="absolute right-[-10%] top-[30%] h-[600px] w-[700px] animate-aurora rounded-full bg-[radial-gradient(closest-side,rgba(94,230,208,0.14),transparent)] [animation-delay:-6s]" />
         <SignalField className="absolute inset-0 size-full mask-radial" />
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent to-ink" />
       </div>
 
-      <motion.div style={{ y: copyY, opacity: copyOpacity, filter: copyBlur }} className="container-x relative text-center">
+      <motion.div style={{ y: copyY, opacity: copyOpacity }} className="container-x relative text-center">
         <motion.a
           href="#contacto"
           initial={{ opacity: 0, y: 10 }}

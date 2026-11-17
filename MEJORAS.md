@@ -45,7 +45,20 @@ Rama de trabajo: `mejoras-autonomas`. Cada mejora tiene su propio commit local, 
 
 ## 3. Qué causaba el retraso del scroll
 
-*(Se completa en la sección 4, mejora 1.)*
+Había una causa principal y varias secundarias que se sumaban:
+
+1. **Lenis con `duration: 1.15` (la causa principal).** Lenis intercepta la rueda del ratón y, en vez de mover la página, la interpola hacia el destino durante 1,15 s. Cada golpe de rueda tardaba más de un segundo en "llegar", y si seguías girando la rueda el destino se iba moviendo por delante. Esa es exactamente la sensación de "delay". No había conflicto con `scroll-behavior: smooth` en CSS (el proyecto lo anulaba con `.lenis-smooth`), pero sí un `requestAnimationFrame` permanente aunque no hubiera scroll.
+   - **Solución:** quitar Lenis y volver al scroll nativo, que responde en el mismo fotograma. Los navegadores ya suavizan la rueda por su cuenta. Todas las animaciones ligadas al scroll (Framer Motion `useScroll`) siguen funcionando igual, porque leen el scroll nativo. Los saltos a las anclas del menú siguen siendo suaves gracias a `scroll-behavior: smooth` + `scroll-padding-top: 88px` en CSS (y se desactivan con `prefers-reduced-motion`).
+2. **Blur ligado al scroll en el hero.** El texto del hero se desenfocaba con `filter: blur(0→12px)` en cada píxel de scroll. Los filtros obligan a repintar en cada fotograma. Ahora solo se desplaza y se desvanece (`transform` + `opacity`, que van por la GPU).
+3. **Auroras con `blur-3xl` animadas sin parar.** Hay tres elipses de hasta 1500×900 px con `filter: blur(64px)` y una animación infinita de `transform`. El blur hay que recalcularlo en cada fotograma de la animación. Se ha quitado el `filter` y se conserva el degradado radial, que ya es suave por sí mismo. Se ven igual.
+4. **Capa de "grano" fija a pantalla completa.** Era un `<div>` `position: fixed` del doble del tamaño de la ventana, con un `feTurbulence` SVG y `z-index: 60` por encima de toda la página. Obligaba a recomponer toda la pantalla en cada fotograma de scroll. Eliminada (además, en el nuevo tema claro sobraba).
+5. **`backdrop-filter` sobre contenido animado.** El panel del hero (sobre el canvas animado) y el formulario final (sobre la aurora animada) tenían `backdrop-blur-xl`, que se recalcula cada vez que cambia lo que hay detrás. Ahora son opacos.
+6. **Resplandor del portfolio con `blur(140px)` y `background-color` animado.** Sustituido por un degradado radial con fundido de opacidad.
+7. **`will-change: transform` en cada palabra de cada titular** (cientos de capas de GPU) y **blur en cada palabra y en cada `Reveal`** al entrar en pantalla, es decir, justo mientras haces scroll. Eliminados el `will-change` y el blur en las apariciones por scroll. Se mantiene el blur solo en la entrada inicial del hero, que ocurre al cargar y no durante el scroll.
+8. **Animaciones de propiedades que provocan reflow.** La bola de la tarjeta "Movimiento con física" animaba `left` y las barras del proceso animaban `height`. Ahora usan `transform` (`x` y `scaleY`).
+9. **Muelle (`useSpring`) en la línea de progreso del proceso.** Hacía que la línea fuera por detrás del scroll. Ahora la controla el scroll directamente.
+
+Lo que **no** era problema: los listeners de scroll (Framer Motion ya usa `requestAnimationFrame` y listeners pasivos, y el canvas del hero usa `{ passive: true }` y se pausa fuera de pantalla). El proyecto no usa GSAP/ScrollTrigger ni tiene imágenes pesadas.
 
 ---
 

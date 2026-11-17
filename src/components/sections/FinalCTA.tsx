@@ -15,7 +15,7 @@ export function FinalCTA() {
   return (
     <section id="contacto" className="relative isolate overflow-hidden pb-16 pt-32 sm:pt-44" aria-labelledby="cta-title">
       <div aria-hidden className="absolute inset-0 -z-10">
-        <div className="absolute bottom-[-30%] left-1/2 h-[900px] w-[1500px] -translate-x-1/2 animate-aurora rounded-full bg-[radial-gradient(closest-side,rgba(139,124,255,0.3),rgba(94,230,208,0.08)_60%,transparent)] blur-3xl" />
+        <div className="absolute bottom-[-30%] left-1/2 h-[900px] w-[1500px] -translate-x-1/2 animate-aurora rounded-full bg-[radial-gradient(closest-side,rgba(139,124,255,0.3),rgba(94,230,208,0.08)_60%,transparent)]" />
         <div className="absolute inset-0 bg-grid opacity-50 mask-radial" />
       </div>
 
@@ -109,7 +109,7 @@ function ContactForm() {
   }
 
   return (
-    <div className="hairline-gradient relative overflow-hidden rounded-[32px] bg-ink-2/80 p-6 shadow-[0_60px_160px_-40px_rgba(139,124,255,0.35)] backdrop-blur-xl sm:p-10">
+    <div className="hairline-gradient relative overflow-hidden rounded-[32px] bg-ink-2/95 p-6 shadow-[0_60px_160px_-40px_rgba(139,124,255,0.35)] sm:p-10">
       <AnimatePresence mode="wait" initial={false}>
         {status === "sent" ? (
           <motion.div

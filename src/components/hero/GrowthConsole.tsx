@@ -66,7 +66,7 @@ export function GrowthConsole() {
   const endY = H - (view.after[view.after.length - 1] / MAX) * H;
 
   return (
-    <div className="hairline-gradient relative overflow-hidden rounded-[22px] bg-ink-2/90 shadow-[0_60px_160px_-40px_rgba(139,124,255,0.35)] backdrop-blur-xl">
+    <div className="hairline-gradient relative overflow-hidden rounded-[22px] bg-ink-2 shadow-[0_60px_160px_-40px_rgba(139,124,255,0.35)]">
       <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3 sm:px-5">
         <div className="flex min-w-0 items-center gap-2.5">
           <span className="relative flex size-2 shrink-0">

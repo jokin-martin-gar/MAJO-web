@@ -165,13 +165,18 @@ function MotionCell() {
       <CellLabel title="Movimiento con física" body="La diferencia entre algo que se mueve y algo que se siente vivo." />
       <div ref={ref} className="mt-8">
         <div className="relative h-12 rounded-full border border-line bg-white/[0.02]">
-          <motion.span
-            key={`${run}-${crafted}`}
-            className="absolute left-1.5 top-1.5 size-9 rounded-full bg-gradient-to-br from-violet to-cyan shadow-[0_0_30px_rgba(139,124,255,0.6)]"
-            initial={{ left: "6px" }}
-            animate={{ left: "calc(100% - 42px)" }}
-            transition={crafted ? { type: "spring", stiffness: 120, damping: 14 } : { duration: 1, ease: "linear" }}
-          />
+          {/* The rail is as wide as the ball's travel, so translating it by 100% lands exactly at the end. */}
+          <div className="absolute inset-y-1.5 left-1.5 right-[calc(0.375rem+2.25rem)]">
+            <motion.span
+              key={`${run}-${crafted}`}
+              className="absolute left-0 top-0 block h-9 w-full"
+              initial={{ x: "0%" }}
+              animate={{ x: "100%" }}
+              transition={crafted ? { type: "spring", stiffness: 120, damping: 14 } : { duration: 1, ease: "linear" }}
+            >
+              <span className="block size-9 rounded-full bg-gradient-to-br from-violet to-cyan shadow-[0_0_30px_rgba(139,124,255,0.6)]" />
+            </motion.span>
+          </div>
         </div>
         <div className="mt-4 flex gap-1 rounded-full border border-line p-1 text-xs" role="radiogroup" aria-label="Tipo de movimiento">
           {[
