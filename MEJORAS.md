@@ -64,4 +64,87 @@ Lo que **no** era problema: los listeners de scroll (Framer Motion ya usa `reque
 
 ## 4. Registro de lo hecho
 
-*(Se completa al terminar cada mejora.)*
+Cada fila es un commit local en la rama `mejoras-autonomas`. Para deshacer una mejora concreta: `git revert <commit>`. Para ver los cambios de una: `git show <commit>`.
+
+| Commit | Mejora | Qué se hizo |
+|--------|--------|-------------|
+| `1ad55be` | Diagnóstico | Este documento. |
+| `31a2bb5` | **1. Scroll inmediato** | Se elimina Lenis (y su dependencia) en favor del scroll nativo. Anclas suaves con CSS. Fuera el blur ligado al scroll, el blur de las auroras y del resplandor del portfolio, la capa de grano fija, el `backdrop-filter` sobre contenido animado y el `will-change` en cada palabra. `left`/`height` animados pasan a `transform`. Detalle completo en la sección 3. |
+| `3dcd026` | **2. Contenido honesto** | Fuera las secciones de testimonios (8 personas inventadas) y de casos de éxito (3 clientes con cifras). Fuera las métricas inventadas del portfolio y del antes/después (se sustituyen por qué incluye cada proyecto y qué cambia, sin números). Fuera "4,9 · 612 reseñas", la "Guía Repsol", las notificaciones de clientes ficticios, la escasez inventada ("solo 3 proyectos por trimestre", "2 plazas") y "+312 % solicitudes". Las demos y el antes/después llevan una etiqueta visible **"Proyecto conceptual"** y dominios `demo.majo.studio/…`. El panel del hero queda como "Panel de resultados · Ejemplo · Datos simulados". El rendimiento se expresa como objetivos (Core Web Vitals en verde, Lighthouse 90+). Nuevas secciones **Quiénes somos** (equipo + valores) y **Estamos empezando: sé de nuestros primeros clientes** (precio de lanzamiento, mantenimiento incluido, atención prioritaria, qué pedimos a cambio, CTA) + **Nuestros compromisos** (< 24 h, presupuesto cerrado, prototipo antes de programar, la web es tuya). FAQ nueva: "Sois un estudio nuevo, ¿por qué confiar?". |
+| `16e4e0d` | **3. Diseño claro** | Paleta clara (crema `#faf8f4`, tarjetas blancas, texto `#16151b`). Todos los colores pasan a variables CSS en `globals.css`, con un ámbito `.theme-dark` reutilizable. Se mantienen en oscuro, como contraste puntual, el footer, el bloque "Primeros clientes" y los paneles visuales del proceso. Se conservan los acentos violeta/menta/ámbar/lima, con variantes `*-ink` para texto. Se adaptan al fondo claro el canvas del hero, el gráfico, las sombras, el cristal (glass), los bordes y la rejilla. También se arregla un fallo previo del gráfico del hero: el área terminaba en diagonal y el punto final no coincidía con la línea. |
+| `7b05ad8` | 4. Legal y RGPD | Páginas `/aviso-legal`, `/privacidad` y `/cookies` (plantillas con `[COMPLETAR]`), enlazadas desde el footer y en el sitemap. Aviso de privacidad junto al botón del formulario. Los enlaces del menú pasan a `/#ancla` para funcionar desde cualquier página. |
+| `3afebaa` | 5. SEO | Título descriptivo ("Diseño y desarrollo web a medida para negocios locales"), descripción nueva, imagen Open Graph en claro, `theme-color` y `color-scheme` claros. |
+| `0580c60` | 7–9. Accesibilidad y limpieza | Menú móvil como `dialog` accesible y con tamaño de letra adaptable. Acordeón sin blur. Se elimina código muerto (`text-shimmer`, `mask-fade-y`, `--ease-snappy`, `DEMO_CONTENT`, `Cases`, `Testimonials`). README actualizado. |
+| `8f6c19e` | 10. Maquetación | Menos hueco vacío bajo el hero. Características del portfolio en formato compacto en móvil. "Sectores con los que trabajamos" pasa a "Sectores para los que diseñamos". |
+| *(último)* | Cierre | Este registro, y "24 horas laborables" coherente en todo el formulario. |
+
+### Contraste (WCAG 2.x, calculado)
+
+| Token | Claro (sobre `#faf8f4` / `#fff`) | Oscuro (sobre `#0b0b10` / `#14141b`) |
+|---|---|---|
+| fg | 17,1 / 18,2 | 17,5 / 16,4 |
+| muted | 7,1 / 7,6 | 7,7 / 7,2 |
+| subtle | 5,5 / 5,8 | 6,0 / 5,6 |
+| violet-ink | 5,8 / 6,1 | 7,9 / 7,4 |
+| cyan-ink | 4,9 / 5,2 | 12,8 / 12,0 |
+| ember-ink | 4,9 / 5,2 | 8,4 / 7,9 |
+| lime-ink | ≥ 4,7 | 17,1 / 15,9 |
+
+Todos ≥ 4,5:1 (AA para texto normal).
+
+### Verificación final (fase 4)
+
+- `tsc`, `next lint` y `next build` sin errores después de cada commit.
+- Capturas automáticas con Microsoft Edge (Playwright, instalado solo en una carpeta temporal, fuera del proyecto) a 1440 px y 390 px de todas las páginas: inicio, aviso legal, privacidad, cookies y 404. **Sin errores de consola ni desbordes horizontales.**
+- Pruebas de interacción, todas OK (16/16):
+  - el menú móvil se abre, se cierra y lleva a la sección correcta (queda bajo la barra fija);
+  - las 5 demos cargan con la etiqueta "Proyecto conceptual" y en modo móvil;
+  - el slider antes/después funciona con teclado (Inicio/Fin);
+  - el acordeón se abre;
+  - el formulario muestra errores si está vacío y la confirmación si se envía bien (se ha comprobado la API real);
+  - los enlaces legales del footer funcionan y "Proceso" lleva de una página legal a la home.
+
+---
+
+## 5. Qué se descartó y por qué
+
+- **Valoraciones dentro de las mini-webs conceptuales** (p. ej. "★ 4,8 · 1.240 reseñas" en Kōji, "4,9 · 612 pacientes" en Arlanza). Se han mantenido porque forman parte del diseño de un negocio ficticio, igual que su carta o sus precios. No dicen nada de MAJO, y el marco que las contiene lleva la etiqueta "Proyecto conceptual". Si prefieres quitarlas, están en `src/components/portfolio/demos/`.
+- **Datos de los estudios en la sección "El problema"** (0,05 s, 75 %, 53 %). Se mantienen porque son estudios reales y citados, no cifras de MAJO.
+- **Mantener Lenis con valores más bajos** (`lerp` alto). Descartado: cualquier interpolación añade retraso por diseño, y el scroll nativo de los navegadores actuales ya es suave. Si se quisiera volver a un scroll "con peso", basta con `npm i lenis` y usar `new Lenis({ lerp: 0.2 })`, nunca `duration` > 0,5.
+- **Fotos reales del equipo**: no las tengo. Se ha dejado un icono neutro y un comentario para sustituirlo por `next/image`.
+- **Banner de cookies**: no hace falta, porque la web no instala cookies. Si se añade analítica, habrá que ponerlo.
+- **Migrar `next lint` a la CLI de ESLint** (Next avisa de que está obsoleto) y **resolver las 17 vulnerabilidades de `npm audit`**. Se descartan por ahora porque cambian dependencias y configuración de herramientas sin mejorar nada visible. Quedan en recomendaciones.
+- **Nada ha requerido permisos de administrador**, así que no hay mejoras saltadas por ese motivo.
+
+---
+
+## 6. Marcadores [COMPLETAR] pendientes
+
+Busca `COMPLETAR` en `src/` para encontrarlos todos. En la web se ven resaltados en amarillo.
+
+| Dónde | Qué falta |
+|-------|-----------|
+| `src/components/sections/About.tsx` | Ciudad desde la que trabajáis. Nombre, rol y una o dos frases de cada persona del equipo (hay 2 fichas; añade o quita en `TEAM`). Opcional: fotos. |
+| `src/components/sections/FoundingClients.tsx` | Descuento de lanzamiento (p. ej. −20 %). Meses de mantenimiento incluidos. Número de plazas con estas condiciones. |
+| `src/lib/site.ts` | Confirmar el email real (`hola@majo.studio`) y el dominio (`NEXT_PUBLIC_SITE_URL`). |
+| `src/app/aviso-legal/page.tsx` | Titular, NIF/CIF, domicilio, datos registrales (si es sociedad), fecha. |
+| `src/app/privacidad/page.tsx` | Responsable, NIF/CIF, domicilio, plazo de conservación, proveedores (alojamiento, email), fecha. |
+| `src/app/cookies/page.tsx` | Fecha. |
+
+**Revisar también** (no son marcadores, pero son promesas que solo tú puedes confirmar):
+- Los compromisos de `src/lib/content.ts`: respuesta < 24 h laborables, presupuesto cerrado, prototipo antes de programar, y dominio/código/contenidos a nombre del cliente.
+- Las respuestas de la FAQ: panel para editar contenidos, mantenimiento posterior, rondas de revisión incluidas.
+- "Unas seis semanas" como duración habitual del proyecto (sección Proceso y CTA final).
+- Los textos legales son una plantilla: conviene que los revise un profesional antes de publicar.
+
+---
+
+## 7. Recomendaciones para el futuro
+
+1. **Rellena los `[COMPLETAR]` antes de enseñar la web.** Lo que más confianza genera ahora mismo es la sección "Quiénes somos" con caras y nombres reales.
+2. **En cuanto tengas el primer cliente**, pide permiso para añadir su proyecto como caso real (con su testimonio). Puedes recuperar el diseño de las secciones eliminadas con `git show 31a2bb5:src/components/sections/Cases.tsx` (y `Testimonials.tsx`) y llenarlas solo con datos reales.
+3. **Configura `CONTACT_WEBHOOK_URL`** (n8n, Make, Zapier, Slack o email). Sin ella, las solicitudes solo aparecen en el log del servidor y se pueden perder.
+4. **Medición respetuosa**: si quieres analítica, usa una sin cookies (Plausible, Umami, Vercel Analytics) para no necesitar banner.
+5. **Mantenimiento técnico**: ejecutar `npm audit` y actualizar dependencias, y migrar `next lint` a ESLint CLI (`npx @next/codemod@canary next-lint-to-eslint-cli .`) antes de pasar a Next 16.
+6. **Rendimiento real**: tras publicar, pasar PageSpeed Insights sobre la URL real y comprobar que cumple los objetivos que la propia web promete (LCP < 2,5 s, Lighthouse 90+).
+7. **Imagen Open Graph**: si tienes una tipografía o un logo final en alta resolución, sustituye la imagen generada (`src/app/opengraph-image.tsx`) por una diseñada.

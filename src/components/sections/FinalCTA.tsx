@@ -125,7 +125,7 @@ function ContactForm() {
             <CheckBurst className="size-20" />
             <p className="mt-6 text-3xl font-medium tracking-tight text-fg">Recibido. Empieza lo bueno.</p>
             <p className="mt-3 max-w-sm text-muted">
-              Te escribiremos en menos de 24 horas con los siguientes pasos y una primera idea para tu negocio.
+              Te escribiremos en menos de 24 horas laborables con los siguientes pasos y una primera idea para tu negocio.
             </p>
           </motion.div>
         ) : (
