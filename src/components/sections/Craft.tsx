@@ -23,8 +23,8 @@ const SECTORS = [
 
 export function Craft() {
   return (
-    <section className="relative py-28 sm:py-40" aria-labelledby="craft-title">
-      <div className="mask-fade-x mb-28 overflow-hidden sm:mb-36" aria-label="Sectores con los que trabajamos">
+    <section className="relative pb-28 pt-12 sm:pb-40 sm:pt-20" aria-labelledby="craft-title">
+      <div className="mask-fade-x mb-24 overflow-hidden sm:mb-32" aria-label="Sectores para los que diseñamos">
         <div className="flex w-max animate-marquee gap-12 [--marquee-duration:50s] hover:[animation-play-state:paused]">
           {[...SECTORS, ...SECTORS].map((s, i) => (
             <span

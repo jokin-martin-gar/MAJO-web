@@ -216,7 +216,7 @@ export function Portfolio() {
               <motion.ul
                 key={project.id}
                 aria-label="Qué resuelve este proyecto"
-                className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3"
+                className="mt-4 flex flex-wrap gap-2 sm:grid sm:grid-cols-3 sm:gap-3"
                 initial="hidden"
                 animate="show"
                 exit="hidden"
@@ -227,7 +227,7 @@ export function Portfolio() {
                     key={s}
                     variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
                     transition={{ duration: 0.5, ease: EASE }}
-                    className="flex items-center gap-3 rounded-2xl border border-line bg-ink-2 p-4 text-sm font-medium"
+                    className="flex items-center gap-2 rounded-full border border-line bg-ink-2 py-2 pl-2 pr-3.5 text-xs font-medium sm:gap-3 sm:rounded-2xl sm:p-4 sm:text-sm"
                   >
                     <span className="grid size-6 shrink-0 place-items-center rounded-full bg-cyan/15 text-cyan-ink" aria-hidden>
                       <svg viewBox="0 0 16 16" className="size-3" fill="none" stroke="currentColor" strokeWidth="2">
