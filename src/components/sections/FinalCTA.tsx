@@ -76,7 +76,8 @@ function ContactForm() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
+    const form = e.currentTarget; // captured now: React clears currentTarget after the await below
+    const data = new FormData(form);
     const payload = {
       name: String(data.get("name") ?? ""),
       email: String(data.get("email") ?? ""),
@@ -103,6 +104,11 @@ function ContactForm() {
         if (json.errors) setErrors(json.errors);
         throw new Error(json.error ?? "Error");
       }
+      // Clear everything so no personal data lingers in the page.
+      form.reset();
+      setBusiness("");
+      setBudget("");
+      setErrors({});
       setStatus("sent");
     } catch (err) {
       setStatus("error");

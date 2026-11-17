@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { validateContact, type ContactPayload } from "@/lib/contact";
+import { mailerConfigured, sendLeadEmail, type Lead } from "@/lib/mailer";
 
 // Best-effort, per-instance rate limit. Put a shared store (e.g. Upstash) in front for multi-instance deploys.
 const WINDOW_MS = 10 * 60 * 1000;
@@ -41,33 +42,47 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, errors }, { status: 422 });
   }
 
-  const lead = {
+  const lead: Lead = {
     name: body.name!.trim(),
     email: body.email!.trim(),
-    business: body.business,
+    business: body.business!,
     budget: body.budget || "Sin especificar",
     message: body.message?.trim() ?? "",
     receivedAt: new Date().toISOString(),
   };
 
+  const failed = () =>
+    NextResponse.json(
+      { ok: false, error: "No hemos podido enviar tu solicitud. Inténtalo de nuevo o escríbenos por email." },
+      { status: 502 },
+    );
+
+  if (!mailerConfigured()) {
+    // Never pretend a lead was delivered in production when it wasn't.
+    if (process.env.NODE_ENV === "production") {
+      console.error("[contact] RESEND_API_KEY / CONTACT_TO_EMAIL no configurados: la solicitud no se ha enviado", lead);
+      return failed();
+    }
+    console.info("[contact] (desarrollo) email sin configurar; solicitud recibida:", lead);
+    return NextResponse.json({ ok: true });
+  }
+
+  try {
+    await sendLeadEmail(lead);
+  } catch (err) {
+    console.error("[contact] envío de email fallido", err);
+    return failed();
+  }
+
+  // Optional extra copy to a webhook (CRM, Slack, n8n…). Its failure doesn't affect the user: the email already went out.
   const webhook = process.env.CONTACT_WEBHOOK_URL;
   if (webhook) {
-    try {
-      const res = await fetch(webhook, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(lead),
-      });
-      if (!res.ok) throw new Error(`Webhook responded ${res.status}`);
-    } catch (err) {
-      console.error("[contact] webhook delivery failed", err);
-      return NextResponse.json(
-        { ok: false, error: "No hemos podido enviar tu solicitud. Escríbenos directamente por email." },
-        { status: 502 },
-      );
-    }
-  } else {
-    console.info("[contact] new lead (set CONTACT_WEBHOOK_URL to forward it)", lead);
+    fetch(webhook, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(lead),
+      signal: AbortSignal.timeout(5_000),
+    }).catch((err) => console.error("[contact] webhook fallido", err));
   }
 
   return NextResponse.json({ ok: true });
