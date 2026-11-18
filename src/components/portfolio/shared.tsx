@@ -1,11 +1,27 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { EASE, cn } from "@/lib/utils";
 
-/** Cross-fades between the simulated pages of a demo site. */
+/**
+ * Film/paper grain as an inline SVG data URI (no image request). `alpha` sets its strength.
+ * Static and non-fixed, so it costs nothing while scrolling.
+ */
+export function grain(alpha = 0.5, frequency = 0.85) {
+  return `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='${frequency}' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 ${alpha} 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")`;
+}
+
+/** Cross-fades between the simulated pages of a demo site and, like a real site, starts each page at the top. */
 export function DemoPages({ page, children }: { page: string; children: React.ReactNode }) {
+  const anchor = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    // The anchor's parent is the demo's scroll container.
+    anchor.current?.parentElement?.scrollTo({ top: 0 });
+  }, [page]);
   return (
+    <>
+    <div ref={anchor} hidden />
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={page}
@@ -18,6 +34,7 @@ export function DemoPages({ page, children }: { page: string; children: React.Re
         {children}
       </motion.div>
     </AnimatePresence>
+    </>
   );
 }
 

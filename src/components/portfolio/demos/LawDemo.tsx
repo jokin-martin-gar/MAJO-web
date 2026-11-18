@@ -1,8 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { CheckBurst, DemoNav, DemoPages } from "../shared";
+import { useState } from "react";
+import { CheckBurst, DemoNav, DemoPages, grain } from "../shared";
 import { EASE, cn } from "@/lib/utils";
 
 /*
@@ -60,21 +60,12 @@ const POSTS = [
   { t: "Herencias con empresa familiar: cómo planificar a tiempo", c: "Patrimonio", d: "28 oct" },
 ];
 
-// Fine paper grain, generated once by the browser; no image request.
-const GRAIN = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")`;
-// Same grain, much fainter, for the paper pages.
-const PAPER_GRAIN = GRAIN.replace("0 0 0 0.55 0", "0 0 0 0.09 0");
+const GRAIN = grain(0.55);
+const PAPER_GRAIN = grain(0.09); // much fainter, for the paper pages
 
 export function LawDemo() {
   const [page, setPage] = useState<Page>("Despacho");
   const [area, setArea] = useState<string | null>(null);
-
-  const scroller = useRef<HTMLDivElement>(null);
-
-  // Like a real site: every page change starts at the top.
-  useEffect(() => {
-    scroller.current?.scrollTo({ top: 0 });
-  }, [page]);
 
   const consult = (a?: string) => {
     setArea(a ?? null);
@@ -108,7 +99,6 @@ export function LawDemo() {
         />
       </header>
       <div
-        ref={scroller}
         className="flex-1 overflow-y-auto no-scrollbar"
         style={{ backgroundImage: PAPER_GRAIN, backgroundAttachment: "local" }}
       >
@@ -228,7 +218,7 @@ function Home({ onConsult, onTeam }: { onConsult: (a?: string) => void; onTeam: 
   return (
     <div>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden text-[#f5f1e8]" style={{ background: C.night }}>
+      <section className="relative isolate overflow-clip text-[#f5f1e8]" style={{ background: C.night }}>
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           {/* light falling from the top-right, like a window in an old office */}
           <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_85%_0%,rgba(195,163,107,0.22),transparent_70%)]" />
@@ -273,7 +263,7 @@ function Home({ onConsult, onTeam }: { onConsult: (a?: string) => void; onTeam: 
             <button
               type="button"
               onClick={() => onConsult()}
-              className="group relative overflow-hidden bg-[#c3a36b] px-5 py-3 text-[11px] uppercase tracking-[0.2em] text-[#10141c] transition-colors hover:bg-[#d4b57d]"
+              className="group relative overflow-clip bg-[#c3a36b] px-5 py-3 text-[11px] uppercase tracking-[0.2em] text-[#10141c] transition-colors hover:bg-[#d4b57d]"
             >
               Solicitar primera consulta
             </button>
@@ -330,7 +320,7 @@ function Home({ onConsult, onTeam }: { onConsult: (a?: string) => void; onTeam: 
       </section>
 
       {/* Principle */}
-      <section className="relative overflow-hidden px-5 py-12 text-center text-[#f5f1e8] @xl:px-10" style={{ background: C.night }}>
+      <section className="relative overflow-clip px-5 py-12 text-center text-[#f5f1e8] @xl:px-10" style={{ background: C.night }}>
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(50%_80%_at_50%_100%,rgba(195,163,107,0.16),transparent)]" />
         <div className="relative mx-auto max-w-lg">
           <Seal className="mx-auto size-20" />
@@ -414,7 +404,7 @@ function Areas({ onConsult }: { onConsult: (a?: string) => void }) {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.45, ease: EASE }}
-                    className="overflow-hidden"
+                    className="overflow-clip"
                   >
                     <div className="pb-6 pl-11">
                       <p className="text-sm leading-relaxed text-[#1a1d24]/65">{a.d}</p>
@@ -464,7 +454,7 @@ function Team({ onConsult }: { onConsult: () => void }) {
               className="group border border-[#1a1d24]/15 bg-[#fbf9f4] transition-colors hover:border-[#7a5c2a]/60"
             >
               {/* Portrait placeholder: monogram on night, like an engraved plaque */}
-              <div className="relative grid aspect-[4/3] place-items-center overflow-hidden" style={{ background: C.night }}>
+              <div className="relative grid aspect-[4/3] place-items-center overflow-clip" style={{ background: C.night }}>
                 <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_70%_at_50%_30%,rgba(195,163,107,0.25),transparent)]" />
                 <div aria-hidden className="absolute inset-3 border border-[#c3a36b]/25" />
                 <span className="relative font-serif text-5xl italic text-[#c3a36b] transition-transform duration-700 group-hover:scale-110">{p.i}</span>
@@ -533,7 +523,7 @@ function Consult({ initialArea }: { initialArea: string | null }) {
         </div>
         <div className="mt-3 grid grid-cols-3 gap-1.5" aria-hidden>
           {[0, 1, 2].map((s) => (
-            <span key={s} className="h-0.5 overflow-hidden bg-[#1a1d24]/10">
+            <span key={s} className="h-0.5 overflow-clip bg-[#1a1d24]/10">
               <motion.span
                 className="block h-full bg-[#7a5c2a]"
                 initial={false}
