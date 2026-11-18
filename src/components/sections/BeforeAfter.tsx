@@ -11,9 +11,9 @@ import { EASE, cn } from "@/lib/utils";
 // so there are no real before/after figures to show.
 const CHANGES = [
   { label: "Reservas", before: "Solo por teléfono", after: "Online, 24/7" },
-  { label: "Carta", before: "PDF de 8,4 MB", after: "Web, legible en móvil" },
-  { label: "Primera impresión", before: "Anticuada", after: "A la altura de la cocina" },
-  { label: "Velocidad", before: "Lenta", after: "Objetivo < 1 s" },
+  { label: "Carta", before: "PDF de 8,4 MB", after: "Web, con alérgenos" },
+  { label: "En el móvil", before: "Versión de escritorio encogida", after: "Diseñada para el móvil" },
+  { label: "Primera impresión", before: "Plantilla de 2016", after: "A la altura de la cocina" },
 ];
 
 export function BeforeAfter() {
@@ -120,17 +120,17 @@ export function BeforeAfter() {
                 <NewRestaurantSite />
               </motion.div>
 
-              <span className="pointer-events-none absolute left-4 top-4 rounded-full bg-black/70 px-3 py-1 font-mono text-[10px] text-white backdrop-blur">
-                ANTES
-              </span>
-              <span className="pointer-events-none absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 font-mono text-[10px] text-black backdrop-blur">
-                DESPUÉS
-              </span>
-
               <motion.div
                 className="absolute inset-y-0 -ml-px w-0.5 bg-white shadow-[0_0_24px_rgba(255,255,255,0.8)]"
                 style={{ left: handleLeft }}
               >
+                {/* Labels ride along with the handle, so they never cover either site's header. */}
+                <span className="pointer-events-none absolute right-full top-[calc(50%+34px)] mr-3 whitespace-nowrap rounded-full bg-black/75 px-3 py-1 font-mono text-[10px] text-white">
+                  ← ANTES
+                </span>
+                <span className="pointer-events-none absolute left-full top-[calc(50%+34px)] ml-3 whitespace-nowrap rounded-full bg-white/90 px-3 py-1 font-mono text-[10px] text-black shadow">
+                  DESPUÉS →
+                </span>
                 <div
                   role="slider"
                   tabIndex={0}
