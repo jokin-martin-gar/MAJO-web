@@ -54,11 +54,11 @@ const PROJECTS = [
     name: "Vidal & Ros",
     sector: "Abogados",
     url: "demo.majo.studio/vidal-ros",
-    color: "#a8a29e",
-    tone: "light" as const,
+    color: "#c3a36b",
+    tone: "dark" as const,
     Demo: LawDemo,
-    summary: "Autoridad editorial y captación de consultas cualificadas.",
-    stack: ["Posicionamiento", "Formulario inteligente", "Blog jurídico"],
+    summary: "Autoridad y discreción: socios visibles, consulta guiada en tres pasos y publicidad conforme al código deontológico.",
+    stack: ["Consulta guiada y confidencial", "Fichas de socios", "Blog jurídico para SEO"],
   },
   {
     id: "nacar",
@@ -187,7 +187,7 @@ export function Portfolio() {
           </div>
 
           {/* Stage */}
-          <div id="portfolio-panel" role="tabpanel" aria-labelledby={`tab-${project.id}`}>
+          <div id="portfolio-panel" role="tabpanel" aria-labelledby={`tab-${project.id}`} className="min-w-0">
             <motion.div
               layout
               transition={{ duration: 0.8, ease: EASE }}

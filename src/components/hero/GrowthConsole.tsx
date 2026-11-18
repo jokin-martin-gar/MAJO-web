@@ -169,6 +169,7 @@ export function GrowthConsole() {
           </text>
 
           <motion.path
+            initial={{ d: toPath(view.before) }}
             animate={{ d: toPath(view.before) }}
             transition={{ duration: 0.8, ease: EASE }}
             fill="none"
