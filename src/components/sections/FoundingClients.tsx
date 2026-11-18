@@ -1,6 +1,5 @@
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { Reveal } from "@/components/ui/Reveal";
-import { Completar } from "@/components/ui/Completar";
 import { ArrowIcon, MagneticButton } from "@/components/ui/MagneticButton";
 import { COMMITMENTS } from "@/lib/content";
 
@@ -12,19 +11,11 @@ export function FoundingClients() {
   const offer = [
     {
       t: "Precio de lanzamiento",
-      d: (
-        <>
-          <Completar>descuento, p. ej. −20 %</Completar> sobre nuestra tarifa habitual, por escrito en el presupuesto.
-        </>
-      ),
+      d: "−20 % sobre nuestra tarifa habitual, por escrito en el presupuesto.",
     },
     {
       t: "Mantenimiento incluido",
-      d: (
-        <>
-          <Completar>número de meses</Completar> de mantenimiento, seguridad y copias de seguridad sin coste.
-        </>
-      ),
+      d: "6 meses de mantenimiento, seguridad y copias de seguridad sin coste.",
     },
     {
       t: "Atención prioritaria",
@@ -60,7 +51,7 @@ export function FoundingClients() {
                   Quiero ser de los primeros <ArrowIcon />
                 </MagneticButton>
                 <p className="text-sm text-muted">
-                  Plazas con estas condiciones: <Completar>número</Completar>
+                  Plazas con estas condiciones: 3
                 </p>
               </Reveal>
             </div>

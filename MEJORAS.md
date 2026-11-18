@@ -124,8 +124,7 @@ Busca `COMPLETAR` en `src/` para encontrarlos todos. En la web se ven resaltados
 
 | Dónde | Qué falta |
 |-------|-----------|
-| `src/components/sections/About.tsx` | Ciudad desde la que trabajáis. Nombre, rol y una o dos frases de cada persona del equipo (hay 2 fichas; añade o quita en `TEAM`). Opcional: fotos. |
-| `src/components/sections/FoundingClients.tsx` | Descuento de lanzamiento (p. ej. −20 %). Meses de mantenimiento incluidos. Número de plazas con estas condiciones. |
+| `src/components/sections/About.tsx` | Opcional: fotos del equipo. |
 | `src/lib/site.ts` | Confirmar el email real (`hola@majo.studio`) y el dominio (`NEXT_PUBLIC_SITE_URL`). |
 | `src/app/aviso-legal/page.tsx` | Titular, NIF/CIF, domicilio, datos registrales (si es sociedad), fecha. |
 | `src/app/privacidad/page.tsx` | Responsable, NIF/CIF, domicilio, plazo de conservación, proveedores (alojamiento, email), fecha. |

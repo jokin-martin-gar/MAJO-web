@@ -1,15 +1,19 @@
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { Reveal } from "@/components/ui/Reveal";
-import { Completar } from "@/components/ui/Completar";
 import { VALUES } from "@/lib/content";
 
-/**
- * Who we are. Team details are placeholders on purpose: only the studio can fill them in.
- * Duplicate or remove entries in TEAM to match the real team.
- */
+/** Who we are. Duplicate or remove entries in TEAM to match the real team. */
 const TEAM = [
-  { name: "nombre y apellido", role: "rol, p. ej. Diseño y dirección de arte", bio: "una o dos frases sobre tu experiencia" },
-  { name: "nombre y apellido", role: "rol, p. ej. Desarrollo", bio: "una o dos frases sobre tu experiencia" },
+  {
+    name: "Maider Artano",
+    role: "Estrategia y Diseño",
+    bio: "He trabajado en numerosos proyectos como directora de diseño y puesta a punto.",
+  },
+  {
+    name: "Joaquín Martín",
+    role: "Desarrollo web",
+    bio: "Ingeniero informático con más de 10 proyectos web a lo largo de mi trayectoria.",
+  },
 ];
 
 export function About() {
@@ -28,7 +32,7 @@ export function About() {
             />
             <Reveal delay={0.25}>
               <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted">
-                Trabajamos desde <Completar>ciudad</Completar> con negocios de toda España.
+                Trabajamos desde Donostia/San Sebastián con negocios de toda España.
               </p>
             </Reveal>
           </div>
@@ -48,15 +52,9 @@ export function About() {
                     </svg>
                   </span>
                   <div className="min-w-0 space-y-1.5">
-                    <p className="font-medium">
-                      <Completar>{p.name}</Completar>
-                    </p>
-                    <p className="text-sm text-muted">
-                      <Completar>{p.role}</Completar>
-                    </p>
-                    <p className="text-sm text-muted">
-                      <Completar>{p.bio}</Completar>
-                    </p>
+                    <p className="font-medium">{p.name}</p>
+                    <p className="text-sm text-violet-ink">{p.role}</p>
+                    <p className="text-sm leading-relaxed text-muted">{p.bio}</p>
                   </div>
                 </li>
               </Reveal>
