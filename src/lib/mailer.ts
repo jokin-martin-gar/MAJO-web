@@ -4,9 +4,11 @@
  * No SDK needed: one fetch call. All settings live in environment variables:
  *
  *   RESEND_API_KEY      secret key from resend.com (never exposed to the browser)
- *   CONTACT_TO_EMAIL    where leads are delivered (change it here, in one place)
+ *   CONTACT_TO_EMAIL    optional override of where leads are delivered; defaults to site.email
  *   CONTACT_FROM_EMAIL  verified sender; defaults to Resend's test sender
  */
+
+import { site } from "@/lib/site";
 
 export type Lead = {
   name: string;
@@ -20,7 +22,7 @@ export type Lead = {
 export function mailerConfig() {
   return {
     apiKey: process.env.RESEND_API_KEY?.trim() ?? "",
-    to: process.env.CONTACT_TO_EMAIL?.trim() ?? "",
+    to: process.env.CONTACT_TO_EMAIL?.trim() || site.email,
     from: process.env.CONTACT_FROM_EMAIL?.trim() || "MAJO <onboarding@resend.dev>",
   };
 }
